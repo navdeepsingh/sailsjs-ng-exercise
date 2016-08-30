@@ -10,14 +10,24 @@ setTimeout(function sunrise () {
 }, 0);
 </script>
 
-<div class="default-page">
+
+<div class="loginmodal-container">
+  <h1>Admin Login</h1><br>
+  <form>
+    <input type="text" ng-model="firstname" name="user" placeholder="Username">
+    <input type="password" ng-model="password" name="pass" placeholder="Password">
+    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+  </form>
+</div>
+
+<!--div class="default-page">
   <div class="header">
     <h1 id="main-title" class="container"><%= __('Navdeep & Saravanan.') %></h1>
     <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
   </div>
   <div class="main container clearfix">
-    <!-- <h1>Getting started</h1>
-    <p>Don't worry, we've got your back.</p> -->
+
+    <p>Don't worry, we've got your back.</p>
     <ul class="getting-started">
       <li class="clearfix">
         <div class="step">
@@ -51,7 +61,7 @@ setTimeout(function sunrise () {
       </li>
     </ul>
     <div class="links">
-      <!-- <h3>Links</h3> -->
+
       <ul class="link-list">
 
         <h4>Docs</h4>
@@ -71,4 +81,4 @@ setTimeout(function sunrise () {
       </ul>
     </div>
   </div>
-</div>
+</div-->

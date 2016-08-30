@@ -21,7 +21,8 @@
     "include-all": "~0.1.6",
     "rc": "1.0.1",
     "sails": "~0.12.4",
-    "sails-disk": "~0.10.9"
+    "sails-disk": "~0.10.9",
+    "sails-mongo": "^0.12.1"
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -33,5 +34,8 @@
     "url": "git://github.com/anonymous node/sails user/sailsjs.git"
   },
   "author": "anonymous node/sails user",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "grunt-nodemon": "^0.4.2"
+  }
 }
