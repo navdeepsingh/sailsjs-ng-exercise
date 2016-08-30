@@ -13,8 +13,8 @@
 module.exports = {
 
 	blueprints : {
-    	shortcuts : false
-  	}
+    	shortcuts : true
+  }
 
   /***************************************************************************
    * Set the default database connection for models in the development       *
