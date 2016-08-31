@@ -11,5 +11,30 @@ module.exports = {
 		return res.param('id')
 	}*/
 
+	test : function(req, res, next) {
+
+		// Get collection for specific id	
+		User.findOne({
+		  email:'navdeep.er@gmail.com'
+		}).then(function(user){
+		    //console.log(user); //radio.genres will have all the genres associated with this radio. 
+		    res.json({'roles' : user.roles});
+		})
+
+		// Get list of collection
+		/*User.native(function(err, collection) {
+		  if (err) return res.serverError(err);
+
+		  collection.find({}, {
+		  	name : true,
+		    roles: true
+		  }).toArray(function (err, results) {
+		    if (err) return res.serverError(err);
+		    return res.json(results);
+		  });
+		});*/
+		
+	}
+
 };
 
