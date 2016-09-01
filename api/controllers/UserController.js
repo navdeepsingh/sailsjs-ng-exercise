@@ -11,7 +11,7 @@ module.exports = {
 		return res.param('id')
 	}*/
 
-	test : function(req, res, next) {
+	administrators : function(req, res, next) {
 
 		// Get collection for specific id	
 		User.findOne({
