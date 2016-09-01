@@ -17,24 +17,18 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
   },
   function(email, password, done) {
-
     User.findOne({ email: email }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect email.' });
-      }
+      } 
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res)
             return done(null, false, {
-              message: 'Invalid Password'
+              message: "Incorrect Password"
             });
-          var returnUser = {
-            email: user.email,
-            createdAt: user.createdAt,
-            id: user.id
-          };
-          return done(null, returnUser, {
+          return done(null, user, {
             message: 'Logged In Successfully'
           });
         });

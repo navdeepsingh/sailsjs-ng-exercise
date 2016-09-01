@@ -12,6 +12,7 @@ module.exports = {
   	id: {
 		type: 'integer',
 		unique: true,
+        autoIncrement : true,
 		primaryKey: true
 	},
     firstName : {
@@ -52,6 +53,12 @@ module.exports = {
     },
     lastLogin : {
     	type : 'datetime'
+    },
+    roles : {
+        collection : 'role',
+        via : 'user',
+        through: 'roleuser',
+        dominant: true
     }
   },
   beforeCreate: function(user, cb) {
