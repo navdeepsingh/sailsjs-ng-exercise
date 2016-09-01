@@ -12,7 +12,10 @@ module.exports = {
     _config: {
         actions: false,
         shortcuts: false,
-        rest: false
+        rest: false,
+        hooks: {
+            grunt: false
+        }
     },
 
     login: function(req, res) {
@@ -28,12 +31,9 @@ module.exports = {
                     message: info.message,
                     user: user
                 });
-            /*req.logIn(user, function(err) {
-                if (err) res.send(err);
-                return res.send({
-                    message: info.message,
-                    user: user
-                });
+            /*req.login(user, function(err) {
+              if (err) { return next(err); }
+              return res.redirect('/users/' + req.user.username);
             });*/
 
         })(req, res);
