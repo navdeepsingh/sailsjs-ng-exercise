@@ -1,8 +1,31 @@
-<div ng-controller="ctrlLogin" class="loginmodal-container">
+
+<div ng-app="app" ng-controller="ctrlLogin" class="loginmodal-container" required>
   <h1>Admin Login</h1><br>
-  <form>
-    <input type="text" ng-model="email" name="email" placeholder="Email">
-    <input type="password" ng-model="password" name="pass" placeholder="Password">
-    <input type="submit" name="login" ng-click="submit();" class="login loginmodal-submit" value="Login">
+
+  <form class="form" name="loginForm" novalidate ng-submit="login()">
+
+    <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$dirty,
+    'has-success':loginForm.email.$valid && loginForm.email.$dirty}">
+      <label for="" class="control-lable">Email</label>
+      <input type="email" name="email" class="form-control" ng-model="user.email" required />
+      <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
+        Invalid Email Address
+      </p>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty,
+    'has-success':loginForm.password.$valid && loginForm.password.$dirty}">
+      <label for="" class="control-lable">Password</label>
+      <input type="password" name="password" class="form-control" ng-model="user.password" required />
+      <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty">
+        Invalid Password
+      </p>
+    </div>
+
+    <div class="form-group" ng-class="">
+      <button class="btn btn-primary" type="submit" ng-disabled="loginForm.$invalid"> Login</button>
+    </div>
+
   </form>
+
 </div>
