@@ -4,10 +4,10 @@ app.controller('ctrlLogin',function($scope, $http){
 
   $scope.login = function(){
 
-  	var data = $.param({
+  	var data = {
                 email: $scope.user.email,
                 password: $scope.user.password
-            });
+            };
 
   	 var config = {
                 headers : {
