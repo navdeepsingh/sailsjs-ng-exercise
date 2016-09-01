@@ -7,7 +7,7 @@
     <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$dirty,
     'has-success':loginForm.email.$valid && loginForm.email.$dirty}">
       <label for="" class="control-lable">Email</label>
-      <input type="email" name="email" class="form-control" ng-model="user.email" required />
+      <input type="email" name="username" id="username" class="form-control" ng-model="user.email" required />
       <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
         Invalid Email Address
       </p>
@@ -16,7 +16,7 @@
     <div class="form-group" ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty,
     'has-success':loginForm.password.$valid && loginForm.password.$dirty}">
       <label for="" class="control-lable">Password</label>
-      <input type="password" name="password" class="form-control" ng-model="user.password" required />
+      <input type="password" id="password" name="password" class="form-control" ng-model="user.password" required />
       <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty">
         Invalid Password
       </p>
