@@ -18,7 +18,8 @@
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
   'styles/**/*.css',
-  "/bootstrap/css/bootstrap.min.css"
+  "/bootstrap/css/bootstrap.min.css",
+  "/styles/angular-toastr.css"
 ];
 
 
@@ -39,6 +40,7 @@ var jsFilesToInject = [
   'js/**/*.js',
   'js/app.js',
   '/bootstrap/js/bootstrap.min.js',
+  'js/angular-toastr.tpls.js'
 ];
 
 

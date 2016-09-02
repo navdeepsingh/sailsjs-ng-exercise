@@ -1,6 +1,7 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['toastr']);
 
-app.controller('ctrlLogin',function($scope, $http){
+app.controller('ctrlLogin',function($scope, $http, toastr){
+
 
 	$scope.jsonResponse = "";
 
@@ -21,6 +22,12 @@ app.controller('ctrlLogin',function($scope, $http){
 	      $http.post('/login', data, config)
 	            .success(function (data, status, headers, config) {
 	                $scope.jsonResponse = data;
+            if(!data.user){
+              toastr.error(data.message, 'error');
+            }
+            else{
+              toastr.success('',data.message);
+            }
 	            })
 	            .error(function (data, status, header, config) {
 	                $scope.ResponseDetails = "Data: " + data +
