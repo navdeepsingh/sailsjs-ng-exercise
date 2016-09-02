@@ -12,7 +12,7 @@ module.exports = {
 	}*/
 
 	administrators : function(req, res, next) {
-		return res.json(req.user);
+		return res.view('administrators', { user : req.user });
 
 		/*User.findById(req.session.pass, function(err, user) {
 
