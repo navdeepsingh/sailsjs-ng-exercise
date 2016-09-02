@@ -44,7 +44,10 @@ module.exports.routes = {
 
   '/logout': 'AuthController.logout',
 
-  'get /administrators': 'UserController.administrators'
+  'get /administrators': 'UserController.administrators',
+
+  'get /roles': 'UserController.roles'
+
 
   /***************************************************************************
   *                                                                          *
