@@ -27,6 +27,7 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
                   }
                   else{
                     toastr.success('',data.message);
+                    window.location.href = data.redirect;
                   }
 	            })
 	            .error(function (data, status, header, config) {
