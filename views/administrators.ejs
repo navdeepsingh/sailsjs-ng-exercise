@@ -1,0 +1,29 @@
+<%- partial ('partials/navbar.ejs') %>
+
+<div class="container">
+  <div class="row">
+    	<div class="col-lg-12">
+    		<h2>Administrators CRUD Operations</h2>
+    		<hr>
+    		<p><%= user[0].roles %></p>
+    		<table>
+    				<tr>
+			   			<th>Name</th>
+			   			<th>Email</th>
+			   			<th>Age</th>
+			   			<th>Gender</th>
+			   			<th>Created At</th>
+			   		</tr>
+	    		<% for(var i=0; i<administrators.length; i++) {%>
+			   		<tr>
+			   			<td><%= administrators[i].getFullName() %></td>
+			   			<td><%= administrators[i].email %></td>
+			   			<td><%= administrators[i].age %></td>
+			   			<td><%= administrators[i].gender %></td>
+			   			<td><%= administrators[i].createdAt %></td>
+			   		</tr>
+				<% } %>
+			</table>  
+    	</div>
+  </div>
+</div>
