@@ -21,18 +21,15 @@ module.exports = {
             if ((err) || (!user)) {
                 return res.send({
                     message: info.message,
-                    user: user,
+                    user: user
                 });
             }
-            /*return res.send({
-                    message: info.message,
-                    user: user
-                });*/
             req.logIn(user, function(err) {
                 if (err) res.send(err);
                 return res.send({
                   message: 'login successful',
                   user: user,
+                  redirect : info.redirect
                 });
             });
 
