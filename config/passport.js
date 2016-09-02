@@ -32,7 +32,7 @@ passport.use(new LocalStrategy({
             });
           return done(null, user, {
             message: 'Logged In Successfully',
-            redirect : '/login'
+            redirect : '/administrators'
           });
         });
     });
