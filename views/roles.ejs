@@ -1,0 +1,28 @@
+<%- partial ('partials/navbar.ejs') %>
+
+<div class="container">
+  <div class="row">
+    	<div class="col-lg-12">
+    		<h2>Roles Management</h2>
+    		<hr>
+    		 <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <% for(var i=0; i<allRoles.length; i++) {%>
+
+                <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><%= allRoles[i].fullName %></a></li>
+
+              <% } %>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">...</div>
+              <div role="tabpanel" class="tab-pane" id="profile">...</div>
+            </div>
+
+          </div>
+    	</div>
+  </div>
+</div>
