@@ -42,12 +42,7 @@ module.exports = {
         required: true,
         minLength: 6,
         maxLength: 50
-    },
-    toJSON: function() {
-	    var obj = this.toObject();
-	    delete obj.password;
-	    return obj;
-    },
+    },   
     logins : {
     	type : 'integer'
     },
@@ -59,6 +54,15 @@ module.exports = {
         via : 'user',
         through: 'roleuser',
         dominant: true
+    },
+    // Attribute methods
+    getFullName: function (){
+      return this.firstName + ' ' + this.lastName;
+    },
+    toJSON: function() {
+        var obj = this.toObject();
+        delete obj.password;
+        return obj;
     }
   },
   beforeCreate: function(user, cb) {
