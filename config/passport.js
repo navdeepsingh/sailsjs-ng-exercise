@@ -31,7 +31,8 @@ passport.use(new LocalStrategy({
               message: "Incorrect Password"
             });
           return done(null, user, {
-            message: 'Logged In Successfully'
+            message: 'Logged In Successfully',
+            redirect : '/login'
           });
         });
     });

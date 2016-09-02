@@ -12,7 +12,26 @@ module.exports = {
 	}*/
 
 	administrators : function(req, res, next) {
-		return res.view('administrators', { user : req.user });
+		var loggedInUser = req.user;
+
+		User.find().exec(function(err, administrators){
+
+			Menu.find({ roles : loggedInUser[0].roles }).then(function(menu) {
+			
+			console.log(menu);
+
+			console.log(administrators);
+
+			return res.view('administrators', {
+				user : loggedInUser,
+				menu : menu,
+				administrators : administrators
+			});
+		})
+		});
+
+		
+		
 
 		/*User.findById(req.session.pass, function(err, user) {
 
@@ -22,7 +41,7 @@ module.exports = {
 		/*User.findOne({
 		  email:'navdeep.er@gmail.com'
 		}).then(function(user){
-		    //console.log(user); //radio.genres will have all the genres associated with this radio. 
+		    //console.log(user); 
 		    return res.json({'roles' : user.roles});
 		})*/
 
