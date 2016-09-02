@@ -12,14 +12,19 @@ module.exports = {
 	}*/
 
 	administrators : function(req, res, next) {
+		return res.view('administrators', { user : req.user });
 
+		/*User.findById(req.session.pass, function(err, user) {
+
+		});
+*/
 		// Get collection for specific id	
-		User.findOne({
+		/*User.findOne({
 		  email:'navdeep.er@gmail.com'
 		}).then(function(user){
 		    //console.log(user); //radio.genres will have all the genres associated with this radio. 
-		    res.json({'roles' : user.roles});
-		})
+		    return res.json({'roles' : user.roles});
+		})*/
 
 		// Get list of collection
 		/*User.native(function(err, collection) {
