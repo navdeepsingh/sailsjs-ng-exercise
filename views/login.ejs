@@ -1,6 +1,4 @@
 
-<link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
-
 <div ng-controller="ctrlLogin" class="loginmodal-container" required>
   <h1>Admin Login</h1><br>
 
@@ -9,7 +7,7 @@
     <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$dirty,
     'has-success':loginForm.email.$valid && loginForm.email.$dirty}">
       <label for="" class="control-lable">Email</label>
-      <input type="email" name="username" id="username" class="form-control" ng-model="user.email" required />
+      <input type="email" name="email" id="username" class="form-control" ng-model="user.email" required />
       <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
         Invalid Email Address
       </p>

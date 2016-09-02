@@ -22,12 +22,12 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 	      $http.post('/login', data, config)
 	            .success(function (data, status, headers, config) {
 	                $scope.jsonResponse = data;
-            if(!data.user){
-              toastr.error(data.message, 'error');
-            }
-            else{
-              toastr.success('',data.message);
-            }
+                  if(!data.user){
+                    toastr.error(data.message, 'Error');
+                  }
+                  else{
+                    toastr.success('',data.message);
+                  }
 	            })
 	            .error(function (data, status, header, config) {
 	                $scope.ResponseDetails = "Data: " + data +
@@ -40,4 +40,10 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 	      $scope.loginForm.submitted = true;
 	    }
   }
-})
+});
+
+app.config(function(toastrConfig) {
+  angular.extend(toastrConfig, {
+    positionClass: 'toast-top-center',
+  });
+});
