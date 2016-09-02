@@ -37,14 +37,14 @@ module.exports.routes = {
   },
 
   'get /login': {
-       view: 'login'
+      view : 'login'
   },
 
   'post /login': 'AuthController.login',
 
   '/logout': 'AuthController.logout',
 
-  'get /administrators':'UserController.administrators'
+  'get /administrators': 'UserController.administrators'
 
   /***************************************************************************
   *                                                                          *

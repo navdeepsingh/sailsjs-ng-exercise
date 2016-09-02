@@ -4,5 +4,6 @@ module.exports = function(req, res, next) {
     }
     else{
         return res.redirect('/login');
+        //return res.send(403, { message: 'Not Authorized' });
     }
 };
