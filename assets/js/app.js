@@ -41,6 +41,8 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 	      $scope.loginForm.submitted = true;
 	    }
   }
+
+
 });
 
 app.config(function(toastrConfig) {
