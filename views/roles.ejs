@@ -11,15 +11,29 @@
             <ul class="nav nav-tabs" role="tablist">
               <% for(var i=0; i<allRoles.length; i++) {%>
 
-                <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><%= allRoles[i].fullName %></a></li>
+                <li role="presentation" <% if (i==0) { %> class="active" <% } %>>
+                  <a href="#<%= allRoles[i].name %>" aria-controls="home" role="tab" data-toggle="tab"><%= allRoles[i].fullName %></a>
+                </li>
 
               <% } %>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="home">...</div>
-              <div role="tabpanel" class="tab-pane" id="profile">...</div>
+            <% for(var i=0; i<allRoles.length; i++) {%>
+
+              <div role="tabpanel" class="tab-pane <% if (i==0) { %> active <% } %>" id="<%= allRoles[i].name %>" >
+                <ul>
+                  <% for(var j=0; j<allMenus.length; j++) {%>
+                    <li>
+                      <input type="checkbox" name="<%= allRoles[i].name %>" id="<%= allMenus[j].name %>">
+                      <label for="<%= allMenus[j].name %>"> <%= allMenus[j].name %> </label>
+                    </li>
+                  <% } %>
+                </ul>
+              </div>
+
+            <% } %>
             </div>
 
           </div>
