@@ -41,6 +41,31 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 	      $scope.loginForm.submitted = true;
 	    }
   }
+
+
+});
+
+app.controller('userController',function($scope, $http) {
+  $scope.removeList = function () {
+
+    var data = $.param({
+      firstName: $scope.firstName,
+      lastName: $scope.lastName,
+      age: $scope.age
+    });
+
+    $http.delete('/administrators' + data)
+      .success(function (data, status, headers) {
+        $scope.ServerResponse = data;
+      })
+      .error(function (data, status, header, config) {
+        $scope.ServerResponse = htmlDecode("Data: " + data +
+          "\n\n\n\nstatus: " + status +
+          "\n\n\n\nheaders: " + header +
+          "\n\n\n\nconfig: " + config);
+      });
+  };
+
 });
 
 app.config(function(toastrConfig) {
