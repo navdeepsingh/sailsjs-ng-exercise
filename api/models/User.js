@@ -5,6 +5,7 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 var bcrypt = require('bcryptjs');
+var moment = require('moment');
 
 module.exports = {
   attributes: {
@@ -57,7 +58,10 @@ module.exports = {
     },
     // Attribute methods
     getFullName: function (){
-      return this.firstName + ' ' + this.lastName;
+        return this.firstName + ' ' + this.lastName;
+    },
+    getCreatedDate : function(){
+        return moment(this.createdAt).format('YYYY-MM-DD');
     },
     toJSON: function() {
         var obj = this.toObject();
