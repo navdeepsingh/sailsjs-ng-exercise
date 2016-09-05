@@ -46,7 +46,7 @@ module.exports.routes = {
 
   'get /administrators': 'UserController.administrators',
 
-  'get /roles': 'UserController.roles'
+  'get /roles': 'RoleController.index'
 
 
   /***************************************************************************

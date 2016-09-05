@@ -26,26 +26,21 @@ module.exports = {
 		
 	},
 
-	roles : function(req, res, next) {
+	show: function (req,res) {
+  	
+  	var id = req.param('id')
 
-		var loggedInUser = req.user;
+  	if (!id) return res.send("No id specified.", 500);
 
-		Role.find().exec(function(err, allRoles){
-			Menu.find().exec(function(err, allMenus){
-				Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {				
+	  	User.findById(id, function userFound(err, user) {
+	  		if(err) return res.sender(err,500);
+	  		if(!user) return res.send("User "+id+" not found", 404);
 
-						return res.view('roles', {
-							user : loggedInUser,
-							topMenu : topMenu,
-							allRoles : allRoles,
-							allMenus : allMenus
-						});
+	  		res.json({
+	  			user:user
+	  		})
+	  	});
 
-				});
-			});
-		});
-
-		
 	}
 
 };
