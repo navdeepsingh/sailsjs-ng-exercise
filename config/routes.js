@@ -48,6 +48,8 @@ module.exports.routes = {
 
   'get /roles': 'RoleController.index',
 
+  'post /roles/save': 'RoleController.save',
+
 
 
   // Standard RESTful routing
