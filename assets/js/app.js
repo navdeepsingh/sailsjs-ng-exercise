@@ -46,9 +46,39 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 });
 
 app.controller('userController',function($scope, $http){
-  $scope.editUser = function(){
-    alert('edit');
-  }
+
+	$scope.user = {
+		id : '',
+		firstName : '',
+		lastName : '',
+		email : '',
+		gender : '',
+		age : '',
+		roles : ''
+	}
+
+	$scope.reset = function() {
+        $scope.user = angular.copy($scope.user);
+    };
+
+	$scope.editUser = function(){
+		alert('edit');
+	};
+
+	$scope.createAdminForm = function(){
+		$scope.modalTitle = 'Create New Admin';
+		$scope.reset();
+		$('#userFormModal').modal();
+	};
+
+	$scope.editAdminForm = function(id) {
+		$scope.modalTitle = 'Edit Admin';		
+		$http.get('/api/user/'+id).success(function(data){
+			$scope.user = data[0];
+			$('#userFormModal').modal();
+		})
+		
+	};
 });
 
 app.config(function(toastrConfig) {

@@ -5,10 +5,13 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 module.exports = {
 	administrators : function(req, res, next) {
 
 		var loggedInUser = req.user;
+		var allRoles = RolesService.all();
+		console.log(allRoles);
 
 		User.find().exec(function(err, administrators){
 
@@ -17,7 +20,8 @@ module.exports = {
 				return res.view('administrators', {
 					user : loggedInUser,
 					topMenu : topMenu,
-					administrators : administrators
+					administrators : administrators,
+					allRoles : allRoles
 				});
 
 			});
