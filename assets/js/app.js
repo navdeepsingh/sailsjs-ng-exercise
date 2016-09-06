@@ -45,6 +45,12 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 
 });
 
+app.controller('userController',function($scope, $http){
+  $scope.editUser = function(){
+    alert('edit');
+  }
+});
+
 app.config(function(toastrConfig) {
   angular.extend(toastrConfig, {
     positionClass: 'toast-top-center',
