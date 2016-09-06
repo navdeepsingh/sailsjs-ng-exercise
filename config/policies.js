@@ -36,7 +36,7 @@ module.exports.policies = {
   ***************************************************************************/
 
   'UserController': {
-    '*': 'isAuthenticated'
+    //'*': 'isAuthenticated'
   },
 
   'RoleController': {

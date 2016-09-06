@@ -26,8 +26,8 @@
                 <ul>
                   <% for(var j=0; j<allMenus.length; j++) {%>
                     <li>
-                      <input type="checkbox" name="<%= allRoles[i].name %>" id="<%= allMenus[j].name %>">
-                      <label for="<%= allMenus[j].name %>"> <%= allMenus[j].name %> </label>
+                      <input type="checkbox" name="<%= allRoles[i].name %>" id="<%= allRoles[i].name +'-'+ allMenus[j].name %>" <% if (_.contains(allMenus[j].roles, allRoles[i].name)) { %> checked <% } %>>
+                      <label for="<%= allRoles[i].name +'-'+ allMenus[j].name %>"> <%= allMenus[j].name %> </label>
                     </li>
                   <% } %>
                 </ul>
@@ -35,6 +35,8 @@
 
             <% } %>
             </div>
+
+            <button class="btn btn-primary pull-right" type="submit">Submit</button>
 
           </div>
     	</div>
