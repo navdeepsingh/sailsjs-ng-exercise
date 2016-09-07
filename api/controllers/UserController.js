@@ -20,7 +20,7 @@ module.exports = {
 
   		if (!id) return res.send("No id specified.", 500);
 
-	  	User.findById(id, function userFound(err, user) {
+	  	User.findById(id).populate('roles').exec(function userFound(err, user) {
 	  		if(err) return res.sender(err,500);
 	  		if(!user) return res.send("User "+id+" not found", 404);
 

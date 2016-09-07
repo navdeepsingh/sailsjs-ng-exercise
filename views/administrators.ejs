@@ -16,6 +16,7 @@
                 <th>Age</th>
                 <th>Gender</th>
                 <th>Logins</th>
+                <th>Roles</th>
                 <th>Created At</th>
                 <th>Action</th>
               </tr>
@@ -27,6 +28,7 @@
                 <td><%= administrators[i].age %></td>
                 <td><%= administrators[i].gender %></td>
                 <td><%= administrators[i].logins %></td>
+                <td><%= administrators[i].roles %></td>
                 <td><%= administrators[i].getCreatedDate() %></td>
                 <td><button type="button" class="btn btn-primary" ng-click="editAdminForm('<%= administrators[i].id %>')">Edit</button>
                 <button type="button" class="btn btn-danger">Delete</button> </td>

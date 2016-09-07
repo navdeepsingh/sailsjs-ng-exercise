@@ -47,42 +47,55 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 
 app.controller('userController',function($scope, $http){
 
-	$scope.user = {
-		id : '',
-		firstName : '',
-		lastName : '',
-		email : '',
-		gender : '',
-		age : '',
-		roles : ''
-	}
-
-	$scope.reset = function() {
-        $scope.user = angular.copy($scope.user);
-    };
-
-	$scope.editUser = function(){
-		alert('edit');
+	$scope.data = {
+		user : {
+			id : '',
+			firstName : '',
+			lastName : '',
+			email : '',
+			gender : '',
+			age : '',
+			roles : ''
+		},
+		createButtonFlag : true,
+		editButtonFlag : false,
+		modalTitle : 'Create New Admin'
 	};
 
+	$scope.orig = angular.copy($scope.data);
+
+	$scope.reset = function() {
+        $scope.data = angular.copy($scope.orig);        
+    };
+
 	$scope.createAdminForm = function(){
-		$scope.modalTitle = 'Create New Admin';
 		$scope.reset();
 		$('#userFormModal').modal();
 	};
 
 	$scope.editAdminForm = function(id) {
-		$scope.modalTitle = 'Edit Admin';		
+		$scope.data = {
+			modalTitle : 'Edit Admin',
+			createButtonFlag : false,
+			editButtonFlag : true
+		}
 		$http.get('/api/user/'+id).success(function(data){
-			$scope.user = data[0];
+			$scope.data.user = data[0];
 			$('#userFormModal').modal();
-		})
+		});		
+	};
+
+	$scope.createUser = function(){
+			
+	};
+
+	$scope.editUser = function(){
 		
 	};
 });
 
 app.config(function(toastrConfig) {
   angular.extend(toastrConfig, {
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-top-right',
   });
 });
