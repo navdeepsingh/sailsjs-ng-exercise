@@ -48,6 +48,8 @@ module.exports.routes = {
 
   'get /roles': 'RoleController.index',
 
+  'get /api/roles': 'RoleController.roles',
+
   'post /roles/save': 'RoleController.save',
 
 

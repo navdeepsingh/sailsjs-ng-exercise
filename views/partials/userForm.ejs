@@ -76,18 +76,17 @@
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Confirm Password</label>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" ng-model="user.conpassword" required>
+                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required>
                 </div>
               </div> 
-
+{{ data.user.roles }}
               <div class="form-group">
-                <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Role</label>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                  <select class="form-control" id="select" required>
-                    <% for(var i=0; i<allRoles.length; i++) {%>
-                      <option><%= allRoles[i].fullName %></option>
-                    <% } %>
-                  </select>
+                <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Roles</label>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">                  
+                  <select class="form-control" id="select" required multiple ng-model="data.user.roles">   
+                  <option ng-repeat="role in data.allRoles" value="{{role.name}}" ng-selected="{{ data.user.roles }}">
+                      {{role.fullName}}
+                    </option>
                 </div>
               </div>
 

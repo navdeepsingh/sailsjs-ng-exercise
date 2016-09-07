@@ -1,3 +1,5 @@
+'use strict';
+
 var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
@@ -55,11 +57,12 @@ app.controller('userController',function($scope, $http){
 			email : '',
 			gender : '',
 			age : '',
-			roles : ''
+			roles : []
 		},
 		createButtonFlag : true,
 		editButtonFlag : false,
-		modalTitle : 'Create New Admin'
+		modalTitle : 'Create New Admin',
+		allRoles : []
 	};
 
 	$scope.orig = angular.copy($scope.data);
@@ -70,10 +73,13 @@ app.controller('userController',function($scope, $http){
 
 	$scope.createAdminForm = function(){
 		$scope.reset();
+		$http.get('/api/roles').success(function(allRoles){
+		    	$scope.data.allRoles = allRoles;	  	
+		});
 		$('#userFormModal').modal();
 	};
 
-	$scope.editAdminForm = function(id) {
+	$scope.editAdminForm = function(id, roles) {
 		$scope.data = {
 			modalTitle : 'Edit Admin',
 			createButtonFlag : false,
@@ -81,9 +87,20 @@ app.controller('userController',function($scope, $http){
 		}
 		$http.get('/api/user/'+id).success(function(data){
 			$scope.data.user = data[0];
+			$http.get('/api/roles').success(function(allRoles){
+		    	$scope.data.allRoles = allRoles;	  	
+		    });
+		    var rolesArray = roles.split(',');
+			$scope.data.user.roles = rolesArray;
 			$('#userFormModal').modal();
 		});		
 	};
+
+	$scope.init = function() {
+	    $http.get('/api/roles').success(function(data){
+	    	$scope.data.allRoles = data;
+	    });
+	 };
 
 	$scope.createUser = function(){
 			
