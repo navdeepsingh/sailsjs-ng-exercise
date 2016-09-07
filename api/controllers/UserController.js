@@ -33,7 +33,6 @@ module.exports = {
 
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
-	    console.log(id);
 
 	    User.findById(id, function userFound(err, user) {
 
@@ -52,10 +51,8 @@ module.exports = {
   	destroy: function (req,res) {
 		var id = req.param('id');
 		if (!id) return res.send("No id specified.",500);
-		console.log(id);
 
 		User.findById(id, function foundUser(err, user) {
-			console.log(user);
 			if (err) return res.send(err,500);
 			if (!user.length) return res.send("No user with that id exists.",404);
 
