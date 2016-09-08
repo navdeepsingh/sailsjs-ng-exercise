@@ -1,9 +1,8 @@
 module.exports = {
 
-  all: function () {
+  all: function (cb) {
     Role.find().exec(function(err, allRoles){
-      console.log(allRoles);
-      return allRoles;
+      return cb(allRoles);
     });
   }
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
@@ -45,44 +47,104 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 
 });
 
-app.controller('userController',function($scope, $http){
+app.controller('userController',function($scope, $http, toastr){
 
-	$scope.user = {
-		id : '',
-		firstName : '',
-		lastName : '',
-		email : '',
-		gender : '',
-		age : '',
-		roles : ''
-	}
+	var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
 
-	$scope.reset = function() {
-        $scope.user = angular.copy($scope.user);
-    };
-
-	$scope.editUser = function(){
-		alert('edit');
+	$scope.data = {
+		users : [],
+		user : {
+			firstName : '',
+			lastName : '',
+			email : '',
+			gender : '',
+			age : '',
+			password : '',
+			roles : []
+		},
+		createButtonFlag : true,
+		editButtonFlag : false,
+		modalTitle : 'Create New Admin',
+		allRoles : []
 	};
 
+	$scope.orig = angular.copy($scope.data);
+
+	$scope.reset = function() {
+        $scope.data = angular.copy($scope.orig);        
+    };
+
 	$scope.createAdminForm = function(){
-		$scope.modalTitle = 'Create New Admin';
-		$scope.reset();
+		//$scope.reset();
+		$http.get('/api/roles').success(function(allRoles){
+		    	$scope.data.allRoles = allRoles;	  	
+		});
+		$scope.data.user.roles = ['minimal'];
+		$('select#roles option').removeAttr('selected');
 		$('#userFormModal').modal();
 	};
 
-	$scope.editAdminForm = function(id) {
-		$scope.modalTitle = 'Edit Admin';		
+	$scope.editAdminForm = function(id, roles) {
+		$scope.data = {
+			modalTitle : 'Edit Admin',
+			createButtonFlag : false,
+			editButtonFlag : true
+		}
 		$http.get('/api/user/'+id).success(function(data){
-			$scope.user = data[0];
+			$scope.data.user = data[0];
+			$http.get('/api/roles').success(function(allRoles){
+		    	$scope.data.allRoles = allRoles;	  	
+		    });
+		    var rolesArray = roles.split(',');
+			$scope.data.user.roles = rolesArray;
 			$('#userFormModal').modal();
-		})
+		});		
+	};
+
+	$scope.init = function() {
+	    $http.get('/api/user').success(function(data){
+	    	$scope.data.users = data;
+	    });
+	 };
+
+	$scope.createUser = function(){
+		$http.post('/api/user', $scope.data.user, config)
+			.success(function (data, status, headers, config) {
+				var message = data.message;
+				if(!data.user){
+                    toastr.error(data.message, 'Error');
+                }
+                else{                    
+                    $http.get('/api/user').success(function(data){
+				    	$scope.data.users = data;
+				    	toastr.success('',message);
+                    	$('#userFormModal').modal('hide');
+				    });
+                }
+            });
+	};
+
+	$scope.editUser = function(){
 		
 	};
+
+	$scope.deleteUser = function(id){
+		if (confirm('Are you Sure?')){
+			$http.delete('/api/user/'+id).success(function(data){
+				console.log(data);
+				window.location.href = '/administrators';
+			});
+		}
+		
+	}
 });
 
 app.config(function(toastrConfig) {
   angular.extend(toastrConfig, {
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-top-right',
   });
 });

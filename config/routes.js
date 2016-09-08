@@ -48,12 +48,18 @@ module.exports.routes = {
 
   'get /roles': 'RoleController.index',
 
+  'get /api/roles': 'RoleController.roles',
+
   'post /roles/save': 'RoleController.save',
 
 
 
   // Standard RESTful routing
   // (if index is not defined, findAll will be used)
+  'get /api/user': {
+    controller  : 'user',
+    action    : 'index'
+  },
   'get /api/user/:id': {
     controller  : 'user',
     action    : 'read'

@@ -10,12 +10,12 @@ var moment = require('moment');
 module.exports = {
   attributes: {
   	// Primitive attributes
-  	id: {
+/*  	id: {
 		type: 'integer',
 		unique: true,
         autoIncrement : true,
 		primaryKey: true
-	},
+	},*/
     firstName : {
         type : 'string',
         required: true     
@@ -49,11 +49,10 @@ module.exports = {
     lastLogin : {
     	type : 'datetime'
     },
+    //reltionship
     roles : {
         collection : 'role',
-        via : 'user',
-        through: 'roleuser',
-        dominant: true
+        via : 'users'
     },
     // Attribute methods
     getFullName: function (){

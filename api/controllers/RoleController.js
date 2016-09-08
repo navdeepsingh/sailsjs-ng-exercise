@@ -27,6 +27,12 @@ module.exports = {
 
 	},
 
+	roles :  function(req, res, next) {
+		RolesService.all(function(allRoles){
+			return res.json(allRoles);
+		});
+	},
+
 	save : function(req, res, next) {
 		return res.send(req.params);
 	}
