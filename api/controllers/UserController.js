@@ -16,6 +16,8 @@ module.exports = {
 
     index : function(req, res, next) {
 
+    	var loggedInUser = req.user;
+
     		User.native(function(err, collection) {
 			  if (err) return res.serverError(err);
 
@@ -32,7 +34,8 @@ module.exports = {
 				getCreatedDate : true
 			  }).toArray(function (err, results) {
 				if (err) return res.serverError(err);
-				return res.json(results);
+
+				return res.json({results : results, loggedInUserRole : loggedInUser[0].roles});
 			  });
 			});
     },
@@ -87,7 +90,7 @@ module.exports = {
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
 
-	    delete params.password;
+	    //delete params.password;
 
 		console.log(params.roles);
 	    User.findById(id).populate('roles').exec(function userFound(err, user) {
