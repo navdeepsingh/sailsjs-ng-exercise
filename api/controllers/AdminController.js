@@ -11,22 +11,17 @@ module.exports = {
 
 		var loggedInUser = req.user;
 
-		RolesService.all(function(allRoles){
+		User.find().exec(function(err, administrators){
 
-			User.find().exec(function(err, administrators){
-
-				Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
-					
-					return res.view('administrators', {
-						user : loggedInUser,
-						topMenu : topMenu,
-						administrators : administrators,
-						allRoles : allRoles
-					});
-
+			Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
+				
+				return res.view('administrators', {
+					user : loggedInUser,
+					topMenu : topMenu,
+					administrators : administrators
 				});
+
 			});
-		
 		});
 	},
 };

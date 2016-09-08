@@ -87,15 +87,38 @@ module.exports = {
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
 
-	    User.findById(id, function userFound(err, user) {
+	    delete params.password;
 
-		    User.update({email : user[0].email}, params, function(err, updatedUser) {
+		console.log(params.roles);
+	    User.findById(id).populate('roles').exec(function userFound(err, user) {
+	    	console.log(user);
+
+		   /* User.update({email : user[0].email}, {age : params.age, roles : params.roles}, function(err, updatedUser) {
 		    	if(err) return res.sender(err,500);
 				if(!updatedUser) {
 					return res.send("User "+id+" not updated", 400);
 				}
 				return res.json(updatedUser);	
-		    });
+		    });*/
+
+	    	User.native(function(err, userNative){
+				userNative.update({ email : user[0].email }, {$set : params}, function userUpdated(err, updatedUser) {
+					if(err) return res.sender(err,500);
+					if(!updatedUser) {
+						return res.send("User "+id+" not updated", 400);
+					}
+					return res.json(updatedUser);
+				});
+			});
+
+		   /* User.native(function(err, userNative){
+				userNative.update({ email : user.email }, {$set : {lastName : params.lastName}}, function userUpdated(err, updatedUser) {
+					if(err) return res.sender(err,500);
+					if(!updatedUser) {
+						return res.send("User "+id+" not updated", 400);
+					}
+				});
+			});	  */
 
 		});
 	    
@@ -114,7 +137,7 @@ module.exports = {
 			   		return res.negotiate(err);
 			  	}
 
-				return res.send('Removed User with email : ' + user[0].email);
+				return res.send({message : 'Removed User with email : ' + user[0].email});
 			});
 			
 		})
