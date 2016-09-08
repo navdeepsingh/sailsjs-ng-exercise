@@ -56,6 +56,10 @@ module.exports.routes = {
 
   // Standard RESTful routing
   // (if index is not defined, findAll will be used)
+  'get /api/user': {
+    controller  : 'user',
+    action    : 'index'
+  },
   'get /api/user/:id': {
     controller  : 'user',
     action    : 'read'

@@ -33,16 +33,16 @@
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Email</label>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                  <input type="email" name="userEmail" class="form-control" id="lastName" ng-model="data.user.email" required>
-                  <span ng-show='userForm.userEmail.$invalid'>Please enter Email!</span>
+                  <input type="email" name="email" class="form-control" id="email" ng-model="data.user.email" required>
+                  <span ng-show='userForm.email.$invalid'>Please enter Email!</span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Age</label>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                  <input type="text" class="form-control" name="userAge" id="lastName" ng-model="data.user.age" required>
-                  <span ng-show='userForm.userAge.$invalid'>Please enter Age</span>
+                  <input type="text" class="form-control" name="age" id="age" ng-model="data.user.age" required>
+                  <span ng-show='userForm.age.$invalid'>Please enter Age</span>
                 </div>
               </div>
 
@@ -52,16 +52,16 @@
 
                   <div class="radio">
                     <label>
-                      <input type="radio" name="optionsRadios" ng-model="data.user.gender" ng-checked="data.user.gender == 'male'" required>
+                      <input type="radio" name="optionsRadios" ng-model="data.user.gender" ng-checked="data.user.gender == 'male'" required value="male">
                       Male
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="optionsRadios" ng-model="data.user.gender" ng-checked="data.user.gender == 'female'">
+                      <input type="radio" name="optionsRadios" ng-model="data.user.gender" ng-checked="data.user.gender == 'female'" value="female">
                       Female
                     </label>
-                  </div>
+                  </div>                  
 
                 </div>
               </div>
@@ -70,27 +70,21 @@
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Password</label>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                   <input type="password" class="form-control" name="password" id="password" ng-model="data.user.password" required>
+                  <span ng-show='userForm.password.$invalid'>Please enter Password</span>
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Confirm Password</label>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                  <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required>
-                </div>
-              </div> 
-{{ data.user.roles }}
+              {{ data.user.roles }}
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Roles</label>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">                  
-                  <select class="form-control" id="select" required multiple ng-model="data.user.roles">   
-                  <option ng-repeat="role in data.allRoles" value="{{role.name}}" ng-selected="{{ data.user.roles }}">
+                  <select class="form-control" id="roles" name="roles" required multiple ng-model="data.user.roles">   
+                      <option ng-repeat="role in data.allRoles" value="{{role.name}}" ng-selected="{{ data.user.roles }}">
                       {{role.fullName}}
                     </option>
+                  </select>  
                 </div>
               </div>
-
-              <input type="hidden" name="userId" id="userId" ng-model="user.id" value="data.user.id">
 
             </fieldset>
 
@@ -102,10 +96,9 @@
       </div>
 
       <div class="modal-footer">
-      {{ createButtonFlag | json }}
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary"  ng-click="userForm.$valid && editUser();" ng-show="data.editButtonFlag">Save changes</button>
-        <button type="submit" class="btn btn-primary"  ng-click="userForm.$valid && createUser();" ng-show="data.createButtonFlag">Submit </button>
+        <button type="submit" class="btn btn-primary"  ng-click="createUser()" ng-show="data.createButtonFlag">Submit </button>
       </div>
       </form>
     </div><!-- /.modal-content -->

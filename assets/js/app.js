@@ -47,16 +47,23 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 
 });
 
-app.controller('userController',function($scope, $http){
+app.controller('userController',function($scope, $http, toastr){
+
+	var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
 
 	$scope.data = {
+		users : [],
 		user : {
-			id : '',
 			firstName : '',
 			lastName : '',
 			email : '',
 			gender : '',
 			age : '',
+			password : '',
 			roles : []
 		},
 		createButtonFlag : true,
@@ -72,10 +79,12 @@ app.controller('userController',function($scope, $http){
     };
 
 	$scope.createAdminForm = function(){
-		$scope.reset();
+		//$scope.reset();
 		$http.get('/api/roles').success(function(allRoles){
 		    	$scope.data.allRoles = allRoles;	  	
 		});
+		$scope.data.user.roles = ['minimal'];
+		$('select#roles option').removeAttr('selected');
 		$('#userFormModal').modal();
 	};
 
@@ -97,18 +106,41 @@ app.controller('userController',function($scope, $http){
 	};
 
 	$scope.init = function() {
-	    $http.get('/api/roles').success(function(data){
-	    	$scope.data.allRoles = data;
+	    $http.get('/api/user').success(function(data){
+	    	$scope.data.users = data;
 	    });
 	 };
 
 	$scope.createUser = function(){
-			
+		$http.post('/api/user', $scope.data.user, config)
+			.success(function (data, status, headers, config) {
+				var message = data.message;
+				if(!data.user){
+                    toastr.error(data.message, 'Error');
+                }
+                else{                    
+                    $http.get('/api/user').success(function(data){
+				    	$scope.data.users = data;
+				    	toastr.success('',message);
+                    	$('#userFormModal').modal('hide');
+				    });
+                }
+            });
 	};
 
 	$scope.editUser = function(){
 		
 	};
+
+	$scope.deleteUser = function(id){
+		if (confirm('Are you Sure?')){
+			$http.delete('/api/user/'+id).success(function(data){
+				console.log(data);
+				window.location.href = '/administrators';
+			});
+		}
+		
+	}
 });
 
 app.config(function(toastrConfig) {
