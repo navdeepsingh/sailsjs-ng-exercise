@@ -35,7 +35,8 @@ passport.use(new LocalStrategy({
           //User.update(user.id, { logins: '1' }).then(console.log);
 
           // Find default menu of user assigned
-          Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {              
+          Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {   
+            console.log(user.roles);           
             return done(null, user, {
               message: 'Logged In Successfully',
               redirect : '/'+ defaultMenu.route

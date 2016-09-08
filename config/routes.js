@@ -52,6 +52,8 @@ module.exports.routes = {
 
   'post /roles/save': 'RoleController.save',
 
+  'get /participants' : 'AdminController.participants',
+
 
 
   // Standard RESTful routing

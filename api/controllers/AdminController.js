@@ -24,5 +24,19 @@ module.exports = {
 			});
 		});
 	},
+
+	participants : function(req, res, next) {
+
+		var loggedInUser = req.user;
+
+		Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
+			
+			return res.view('participants', {
+				user : loggedInUser,
+				topMenu : topMenu
+			});
+
+		});
+	}
 };
 
