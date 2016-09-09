@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+ var bcrypt = require('bcryptjs');
 
 module.exports = {
 
@@ -89,11 +90,10 @@ module.exports = {
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
 
-	    //delete params.password;
-
 	    User.findById(id).populate('roles').exec(function userFound(err, user) {
 
 	    	User.native(function(err, userNative){
+	    		User.beforeUpdate(params);
 				userNative.update({ email : user[0].email }, {$set : params}, function userUpdated(err, updatedUser) {
 					if(err) return res.sender(err,500);
 					if(!updatedUser) {
