@@ -19,7 +19,8 @@
 var cssFilesToInject = [
   'styles/**/*.css',
   "/bootstrap/css/bootstrap.min.css",
-  "/styles/angular-toastr.css"
+  "/styles/angular-toastr.css",
+  "/styles/font-awesome.min.css"
 ];
 
 
