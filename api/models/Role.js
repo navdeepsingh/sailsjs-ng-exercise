@@ -31,10 +31,8 @@ module.exports = {
 		type : 'integer'
 	},
 	users: {
-	    collection: 'user',
-	       via: 'roles',
-	       through: 'roleuser'
-	    }
+	     model : 'user'
+	}
   }
 };
 
