@@ -28,7 +28,7 @@
                 </th>
                 <th>Action</th>
               </tr>
-              <tr ng-repeat="(key, user) in data.users | orderBy:sortType:sortReverse">
+              <tr ng-repeat="(key, user) in data.users | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
                 <td>{{ user._id }}</td>
                 <td>{{ user.firstName }} {{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
@@ -44,6 +44,17 @@
               </tr>
         </table>
         <button type="button" class="btn btn-primary pull-right" ng-click="createAdminForm()">Add New Admin</button>
+
+
+          <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+          </button>
+          {{currentPage+1}}/{{numberOfPages()}}
+          <button ng-disabled="currentPage >= data.users.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+          </button>
+
+
         </div>
 
         <%- partial ('partials/userForm.ejs') %>

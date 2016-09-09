@@ -172,6 +172,20 @@ app.controller('userController',function($scope, $http, toastr){
     { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
   ];
 
+  $scope.currentPage = 0;
+  $scope.pageSize = 5;
+  $scope.data.users = [];
+  $scope.numberOfPages=function(){
+    return Math.ceil($scope.data.users.length/$scope.pageSize);
+  }
+
+});
+
+app.filter('startFrom', function() {
+  return function(input, start) {
+    start = +start; //parse to int
+    return input.slice(start);
+  }
 });
 
 app.config(function(toastrConfig) {
