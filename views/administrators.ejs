@@ -28,10 +28,10 @@
                 <td>{{ user.gender }}</td>
                 <td>{{ user.logins }}</td>
                 <td>{{ user.roles }}</td>
-                <td>{{ user.createdAt }}</td>
+                <td>{{ user.createdAt }} {{ loggedInUser.id }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" ng-click="editAdminForm(user._id, user.roles)">Edit</button>
-                    <button type="button" class="btn btn-danger" ng-click="deleteUser(user._id)" ng-hide="!key">Delete</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteUser(user._id)" ng-hide="loggedInUser.id == user._id">Delete</button>
                 </td>
               </tr>
         </table>

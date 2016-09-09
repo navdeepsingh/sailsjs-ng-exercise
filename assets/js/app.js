@@ -71,7 +71,7 @@ app.controller('userController',function($scope, $http, toastr){
 		modalTitle : 'Create New Admin',
 		required : true,
 		allRoles : [],
-		loggedInUserRole : ['minimal']
+		loggedInUser : ''
 	};
 
 	$scope.orig = angular.copy($scope.data.user);
@@ -164,6 +164,7 @@ app.controller('userController',function($scope, $http, toastr){
 	$scope.getUsers = function () {
 		$http.get('/api/user').success(function(data){
 		  	$scope.data.users = data.results;				    	
+		  	$scope.data.loggedInUser = data.loggedInUser;	
 		});
 	}
 });
