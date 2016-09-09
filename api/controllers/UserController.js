@@ -35,7 +35,7 @@ module.exports = {
 			  }).toArray(function (err, results) {
 				if (err) return res.serverError(err);
 
-				return res.json({results : results, loggedInUserRole : loggedInUser[0].roles});
+				return res.json({results : results, loggedInUser : loggedInUser[0]});
 			  });
 			});
     },
@@ -53,7 +53,6 @@ module.exports = {
 			logins : 0
 		}
 
-		console.log(values.roles);
 		User.create(params).populate('roles').exec(function createUser(err, user){
 			if(err) return res.send(err,500);
 
@@ -92,17 +91,7 @@ module.exports = {
 
 	    //delete params.password;
 
-		console.log(params.roles);
 	    User.findById(id).populate('roles').exec(function userFound(err, user) {
-	    	console.log(user);
-
-		   /* User.update({email : user[0].email}, {age : params.age, roles : params.roles}, function(err, updatedUser) {
-		    	if(err) return res.sender(err,500);
-				if(!updatedUser) {
-					return res.send("User "+id+" not updated", 400);
-				}
-				return res.json(updatedUser);	
-		    });*/
 
 	    	User.native(function(err, userNative){
 				userNative.update({ email : user[0].email }, {$set : params}, function userUpdated(err, updatedUser) {
@@ -113,15 +102,6 @@ module.exports = {
 					return res.json(updatedUser);
 				});
 			});
-
-		   /* User.native(function(err, userNative){
-				userNative.update({ email : user.email }, {$set : {lastName : params.lastName}}, function userUpdated(err, updatedUser) {
-					if(err) return res.sender(err,500);
-					if(!updatedUser) {
-						return res.send("User "+id+" not updated", 400);
-					}
-				});
-			});	  */
 
 		});
 	    
