@@ -78,7 +78,7 @@ app.controller('userController',function($scope, $http, toastr){
 
 
 	$scope.reset = function() {
-        $scope.data.user = angular.copy($scope.orig); 
+        $scope.data.user = angular.copy($scope.orig);
         $scope.data.createButtonFlag = true;
 		$scope.data.editButtonFlag = false;
 		$scope.data.modalTitle = 'Create New Admin';
@@ -91,7 +91,7 @@ app.controller('userController',function($scope, $http, toastr){
 	$scope.createAdminForm = function(){
 		$scope.reset();
 		$http.get('/api/roles').success(function(allRoles){
-		    	$scope.data.allRoles = allRoles;	  	
+		    	$scope.data.allRoles = allRoles;
 		});
 		$scope.data.user.roles = ['minimal'];
 		$('select#roles option').removeAttr('selected');
@@ -108,13 +108,13 @@ app.controller('userController',function($scope, $http, toastr){
 		$http.get('/api/user/'+id).success(function(data){
 			$scope.data.user = data[0];
 			$http.get('/api/roles').success(function(allRoles){
-		    	$scope.data.allRoles = allRoles;	  	
+		    	$scope.data.allRoles = allRoles;
 		    });
 		    //var rolesArray = roles.split(',');
 			$scope.data.user.roles = roles;
 			$scope.getUsers();
 			$('#userFormModal').modal();
-		});		
+		});
 	};
 
 	$scope.createUser = function(){
@@ -125,7 +125,7 @@ app.controller('userController',function($scope, $http, toastr){
                     toastr.error(data.message, 'Error');
                 }
                 else{
-                	$scope.getUsers();                    
+                	$scope.getUsers();
             		toastr.success('',message);
                 	$('#userFormModal').modal('hide');
                 }
@@ -141,7 +141,7 @@ app.controller('userController',function($scope, $http, toastr){
                     toastr.error(data.message, 'Error');
                 }
                 else{
-                	$scope.getUsers();                    
+                	$scope.getUsers();
             		toastr.success('',message);
                 	$('#userFormModal').modal('hide');
                 }
@@ -152,18 +152,40 @@ app.controller('userController',function($scope, $http, toastr){
 		if (confirm('Are you Sure?')){
 			$http.delete('/api/user/'+id).success(function(responseDelete){
 				$scope.getUsers();
-				toastr.success('',responseDelete.message);				
+				toastr.success('',responseDelete.message);
 			});
 		}
-		
+
 	},
 
 	$scope.getUsers = function () {
 		$http.get('/api/user').success(function(data){
-		  	$scope.data.users = data.results;				    	
-		  	$scope.data.loggedInUser = data.loggedInUser;	
+		  	$scope.data.users = data.results;
+		  	$scope.data.loggedInUser = data.loggedInUser;
 		});
 	}
+
+  $scope.data.users = [
+    { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
+    { name: 'Philly', fish: 'Tuna', tastiness: 4 },
+    { name: 'Tiger', fish: 'Eel', tastiness: 7 },
+    { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
+  ];
+
+  $scope.currentPage = 0;
+  $scope.pageSize = 5;
+  $scope.data.users = [];
+  $scope.numberOfPages=function(){
+    return Math.ceil($scope.data.users.length/$scope.pageSize);
+  }
+
+});
+
+app.filter('startFrom', function() {
+  return function(input, start) {
+    start = +start; //parse to int
+    return input.slice(start);
+  }
 });
 
 app.config(function(toastrConfig) {
