@@ -122,7 +122,9 @@ app.controller('userController',function($scope, $http, toastr){
 			.success(function (data, status, headers, config) {
 				var message = data.message;
 				if(!data.user){
-                    toastr.error(data.message, 'Error');
+					angular.forEach(data.Errors, function(error){
+						toastr.error(error[0].message, 'Error');
+					});                    
                 }
                 else{
                 	$scope.getUsers();

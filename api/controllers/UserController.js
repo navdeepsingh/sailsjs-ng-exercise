@@ -54,7 +54,11 @@ module.exports = {
 		}
 
 		User.create(params).populate('roles').exec(function createUser(err, user){
-			if(err) return res.send(err,500);
+			if(err) { //return res.send(err,500);
+				return res.json(err);
+			}
+
+			
 
 			User.native(function(err, userNative){
 				userNative.update({ email : user.email }, {$set : {roles : values.roles }}, function userUpdated(err, updatedUser) {

@@ -89,5 +89,30 @@ module.exports = {
         console.log('Error bcrypting');
     }
   },
+  //model validation messages definitions
+    validationMessages: { //hand for i18n & l10n
+        firstName : {
+            required: "First Name is required"     
+        },
+        lastName : {
+            required: "Last Name is required"          
+        },
+        email: {
+            required: 'Email is required',
+            email: 'Provide valid email address',
+            unique: 'Email address is already taken'
+        },
+        gender : {
+            in: "Gender is required",  
+        },
+        age : {
+            required: "Age is required",    
+            integer: "Age must be valid"
+        },
+        password: {
+            required : "Password is required",
+            minLength: 'Minimum length of password is 6'
+        }
+    }
 };
 
