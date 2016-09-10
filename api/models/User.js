@@ -80,21 +80,13 @@ module.exports = {
 	    });
 	});
   },
-  beforeUpdate: function(values, next) {
+  beforeUpdate: function(values) {
     if(values.password) {
-        bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(values.password, salt, function(err, hash) {
-            if (err) {
-                console.log(err);
-                cb(err);
-            } else {
-                values.password = hash;
-                cb();
-            }
-        });
-    });
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(values.password, salt);
+        return values.password = hash;
     } else {
-        next();
+        console.log('Error bcrypting');
     }
   },
 };
