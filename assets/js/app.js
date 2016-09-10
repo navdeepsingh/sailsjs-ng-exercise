@@ -165,13 +165,6 @@ app.controller('userController',function($scope, $http, toastr){
 		});
 	}
 
-  $scope.data.users = [
-    { name: 'Cali Roll', fish: 'Crab', tastiness: 2 },
-    { name: 'Philly', fish: 'Tuna', tastiness: 4 },
-    { name: 'Tiger', fish: 'Eel', tastiness: 7 },
-    { name: 'Rainbow', fish: 'Variety', tastiness: 6 }
-  ];
-
   $scope.currentPage = 0;
   $scope.pageSize = 5;
   $scope.data.users = [];
