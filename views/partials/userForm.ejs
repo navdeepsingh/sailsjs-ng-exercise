@@ -4,13 +4,13 @@
 
       <form name="userForm" class="form-horizontal" novalidate>
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">{{ data.modalTitle }}</h4>
-      </div>
-      <div class="modal-body">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">{{ data.modalTitle }}</h4>
+        </div>
+        <div class="modal-body">
 
-        <div class="well bs-component">
+          <div class="well bs-component">
 
             <fieldset>
 
@@ -61,7 +61,7 @@
                       <input type="radio" name="optionsRadios" ng-model="data.user.gender" ng-checked="data.user.gender == 'female'" value="female">
                       Female
                     </label>
-                  </div>                  
+                  </div>
 
                 </div>
               </div>
@@ -77,29 +77,29 @@
               {{ data.user.roles }}
               <div class="form-group">
                 <label for="inputEmail" class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Roles</label>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">                  
-                  <select class="form-control" id="roles" name="roles" required multiple ng-model="data.user.roles">   
-                      <option ng-repeat="role in data.allRoles" value="{{role.name}}" ng-selected="{{ data.user.roles }}">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                  <select class="form-control" id="roles" name="roles" required multiple ng-model="data.user.roles">
+                    <option ng-repeat="role in data.allRoles" value="{{role.name}}" ng-selected="{{ data.user.roles }}">
                       {{role.fullName}}
                     </option>
-                  </select>  
+                  </select>
                 </div>
               </div>
 
             </fieldset>
 
 
+          </div>
+
+
+
         </div>
 
-
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary"  ng-click="editUser(data.user.id);" ng-show="data.editButtonFlag">Save changes</button>
-        <button type="submit" class="btn btn-primary"  ng-click="createUser()" ng-show="data.createButtonFlag">Submit </button>
-      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary"  ng-click="editUser(data.user.id);" ng-show="data.editButtonFlag">Save changes</button>
+          <button type="submit" class="btn btn-primary"  ng-click="createUser()" ng-show="data.createButtonFlag">Submit </button>
+        </div>
       </form>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
