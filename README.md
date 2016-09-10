@@ -7,7 +7,7 @@ Sailsjs is a node framework works with MySQL to NoSQL (MongoDB) with conjunction
 ### Installation
 ```sh
 $ git clone [git-repo-url] sailsjs-app
-$ cd laravel-crudsailsjs-app
+$ cd sailsjs-app
 ```
 
 ### Steps to setup
