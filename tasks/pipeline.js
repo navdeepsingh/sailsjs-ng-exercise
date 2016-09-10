@@ -17,7 +17,10 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/**/*.css'
+  'styles/**/*.css',
+  "/bootstrap/css/bootstrap.min.css",
+  "/styles/angular-toastr.css",
+  "/styles/font-awesome.min.css"
 ];
 
 
@@ -37,6 +40,8 @@ var jsFilesToInject = [
   // will be injected here in no particular order.
   'js/**/*.js',
   'js/app.js',
+  '/bootstrap/js/bootstrap.min.js',
+  'js/angular-toastr.tpls.js'
 ];
 
 
@@ -50,7 +55,7 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+  'templates/*.ejs'
 ];
 
 

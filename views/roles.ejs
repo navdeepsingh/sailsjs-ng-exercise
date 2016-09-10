@@ -1,0 +1,46 @@
+<%- partial ('partials/navbar.ejs') %>
+
+<div class="container">
+  <div class="row">
+    	<div class="col-lg-12">
+    		<h2>Roles Management</h2>
+    		<hr>
+    		 <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <% for(var i=0; i<allRoles.length; i++) {%>
+
+                <li role="presentation" <% if (i==0) { %> class="active" <% } %>>
+                  <a href="#<%= allRoles[i].name %>" aria-controls="home" role="tab" data-toggle="tab"><%= allRoles[i].fullName %></a>
+                </li>
+
+              <% } %>
+            </ul>
+            <form ng-controller="ctrlRoles" id="rolesForm" ng-submit="save()">
+              <!-- Tab panes -->
+              <div class="tab-content">
+
+                  <% for(var i=0; i<allRoles.length; i++) {%>
+
+                    <div role="tabpanel" class="tab-pane <% if (i==0) { %> active <% } %>" id="<%= allRoles[i].name %>" >
+                      <ul>
+                        <% for(var j=0; j<allMenus.length; j++) {%>
+                          <li>
+                            <input type="checkbox" name="<%= allRoles[i].name %>" id="<%= allRoles[i].name +'-'+ allMenus[j].name %>" <% if (_.contains(allMenus[j].roles, allRoles[i].name)) { %> checked <% } %>>
+                            <label for="<%= allRoles[i].name +'-'+ allMenus[j].name %>"> <%= allMenus[j].name %> </label>
+                          </li>
+                        <% } %>
+                      </ul>
+                    </div>
+
+                  <% } %>
+
+              </div>
+
+              <button class="btn btn-primary pull-right" type="submit">Submit</button>
+          </form>
+          </div>
+    	</div>
+  </div>
+</div>

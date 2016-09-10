@@ -34,16 +34,49 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+  'get /login': {
+      view : 'login'
+  },
+
+  'post /login': 'AuthController.login',
+
+  '/logout': 'AuthController.logout',
+
+  'get /administrators': 'AdminController.administrators',
+
+  'get /roles': 'RoleController.index',
+
+  'get /api/roles': 'RoleController.roles',
+
+  'post /roles/save': 'RoleController.save',
+
+  'get /participants' : 'AdminController.participants',
+
+
+
+  // Standard RESTful routing
+  // (if index is not defined, findAll will be used)
+  'get /api/user': {
+    controller  : 'user',
+    action    : 'index'
+  },
+  'get /api/user/:id': {
+    controller  : 'user',
+    action    : 'read'
+  },
+  'post /api/user': {
+    controller  : 'user',
+    action    : 'create'
+  },
+  'put /api/user/:id': {
+    controller  : 'user',
+    action    : 'update'
+  },
+  'delete /api/user/:id': {
+    controller  : 'user',
+    action    : 'destroy'
+  }
 
 };
