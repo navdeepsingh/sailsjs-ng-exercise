@@ -4,26 +4,19 @@ var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
 
+	$scope.user = { email: '', password: '' };
 
-	$scope.jsonResponse = "";
-
-	$scope.login = function(){
-
-	  	var data = {
-	                email: $scope.user.email,
-	                password: $scope.user.password
-	            };
-
-	  	 var config = {
+	var config = {
 	                headers : {
 	                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
 	                }
-	            }
+	            }	            
+
+	$scope.login = function(){	  	 
 
 	    if($scope.loginForm.$valid){
-	      $http.post('/login', data, config)
+	      $http.post('/login', $scope.user, config)
 	            .success(function (data, status, headers, config) {
-	                $scope.jsonResponse = data;
                   if(!data.user){
                     toastr.error(data.message, 'Error');
                   }
@@ -54,6 +47,9 @@ app.controller('userController',function($scope, $http, toastr){
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
         }
     }
+
+    $scope.currentPage = 0;
+  	$scope.pageSize = 10;
 
 	$scope.data = {
 		users : [],
@@ -167,12 +163,9 @@ app.controller('userController',function($scope, $http, toastr){
 		});
 	}
 
-  $scope.currentPage = 0;
-  $scope.pageSize = 5;
-  $scope.data.users = [];
-  $scope.numberOfPages=function(){
-    return Math.ceil($scope.data.users.length/$scope.pageSize);
-  }
+	$scope.numberOfPages=function(){
+	   return Math.ceil($scope.data.users.length/$scope.pageSize);
+	}
 
 });
 
