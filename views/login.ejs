@@ -1,31 +1,42 @@
-
+<div class="login-cont">
 <div ng-controller="ctrlLogin" class="loginmodal-container" required>
-  <h1>Admin Login</h1><br>
+  <h1>Admin Login</h1>
+
+  <div class="row login-sub">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">Powered by Sailsjs framework</div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-right">{{date | date:'yyyy-MM-dd'}} </div>
+  </div>
 
   <form class="form" name="loginForm" novalidate ng-submit="login()">
 
-    <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$dirty,
+    <div class="form-group inner-addon right-addon" ng-class="{'has-error':loginForm.email.$invalid && loginForm.email.$dirty,
     'has-success':loginForm.email.$valid && loginForm.email.$dirty}">
-      <label for="" class="control-lable">Email</label>
-      <input type="email" name="email" id="username" class="form-control" ng-model="user.email" required />
+      <i class="glyphicon glyphicon-user"></i>
+      <input type="email" name="email" id="username" class="form-control" ng-model="user.email" required placeholder="Email Address" />
       <p class="help-block" ng-show="loginForm.email.$invalid && loginForm.email.$dirty">
         Invalid Email Address
       </p>
     </div>
 
-    <div class="form-group" ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty,
+    <div class="form-group inner-addon right-addon" ng-class="{'has-error':loginForm.password.$invalid && loginForm.password.$dirty,
     'has-success':loginForm.password.$valid && loginForm.password.$dirty}">
-      <label for="" class="control-lable">Password</label>
-      <input type="password" id="password" name="password" class="form-control" ng-model="user.password" required />
+      <i class="glyphicon glyphicon-lock"></i>
+      <input type="password" id="password" name="password" class="form-control" ng-model="user.password" required placeholder="Password" />
       <p class="help-block" ng-show="loginForm.password.$invalid && loginForm.password.$dirty">
         Invalid Password
       </p>
     </div>
 
+    <div class="login-sub">
+      <span class="designCheckbox" id="tnc"></span>
+      <input type="checkbox" id="remember" class="inputNone" /><label for="remember">Keep me logged in.</label>
+    </div>
+
     <div class="form-group" ng-class="">
-      <button class="btn btn-primary" type="submit" > Login</button>
+      <button class="btn btn-success" type="submit" > Login</button>
     </div>
 
   </form>
 
+</div>
 </div>

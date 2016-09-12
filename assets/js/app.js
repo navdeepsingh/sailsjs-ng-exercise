@@ -4,15 +4,17 @@ var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
 
+  $scope.date = new Date();
+
 	$scope.user = { email: '', password: '' };
 
 	var config = {
 	                headers : {
 	                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
 	                }
-	            }	            
+	            }
 
-	$scope.login = function(){	  	 
+	$scope.login = function(){
 
 	    if($scope.loginForm.$valid){
 	      $http.post('/login', $scope.user, config)
@@ -120,7 +122,7 @@ app.controller('userController',function($scope, $http, toastr){
 				if(!data.user){
 					angular.forEach(data.Errors, function(error){
 						toastr.error(error[0].message, 'Error');
-					});                    
+					});
                 }
                 else{
                 	$scope.getUsers();
@@ -180,4 +182,12 @@ app.config(function(toastrConfig) {
   angular.extend(toastrConfig, {
     positionClass: 'toast-top-right',
   });
+});
+
+$('input:checkbox').change(function(){
+  if($(this).is(":checked")) {
+    $('.login-sub span').addClass("active");
+  } else {
+    $('.login-sub span').removeClass("active");
+  }
 });
