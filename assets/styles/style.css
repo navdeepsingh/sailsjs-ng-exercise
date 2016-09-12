@@ -78,17 +78,49 @@ input.inputNone {
   position: absolute;
   left: -1000px;
 }
-/* enable absolute positioning */
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: #e2edf3;
+}
+.table-hover>tbody>tr:hover {
+  background-color: #d5e5ee;
+}
 .inner-addon {
   position: relative;
 }
-.inner-addon .glyphicon {
+.inner-addon .glyphicon{
   position: absolute;
   padding: 10px;
   pointer-events: none;
 }
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-.left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
-
+.left-addon .glyphicon{
+  left:  0px;
+}
+.right-addon .glyphicon{
+  right: 0px;
+}
+.left-addon input{
+  padding-left:  30px;
+}
+.right-addon input{
+  padding-right: 30px;
+}
+/**Theme edit**/
+.navbar-default {
+  background-color: #2694d1;
+}
+.navbar-default .navbar-brand {
+  color: #000;
+  font-weight: 700;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover {
+  color: #002438;
+}
+.navbar-default .navbar-text {
+  color: #fff;
+}
+.navbar-default .navbar-link {
+  color: #c1e100;
+}
