@@ -28,7 +28,7 @@
                 </th>
                 <th>Action</th>
               </tr>
-              <tr ng-repeat="(key, user) in data.users | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
+              <tr ng-repeat="(key, user) in data.users">
                 <td>{{ user._id }}</td>
                 <td>{{ user.firstName }} {{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
