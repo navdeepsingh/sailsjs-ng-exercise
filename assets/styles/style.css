@@ -140,3 +140,10 @@ ul,li {
 .nav-tabs>li>a {
   background: #ecf7fd;
 }
+.btn-row{
+  padding: 20px 0;
+  overflow: hidden;
+}
+.btn-row.center{
+  text-align: center;
+}
