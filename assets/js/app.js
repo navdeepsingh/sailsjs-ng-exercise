@@ -4,7 +4,7 @@ var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
 
-  $scope.date = new Date();
+  	$scope.date = new Date();
 
 	$scope.user = { email: '', password: '' };
 
@@ -168,6 +168,40 @@ app.controller('userController',function($scope, $http, toastr){
 	$scope.numberOfPages=function(){
 	   return Math.ceil($scope.data.users.length/$scope.pageSize);
 	}
+
+});
+
+app.controller('ctrlRoles',function($scope, $http, toastr){
+
+	var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
+
+    $scope.data = {
+    	checkedMenussuper : [],
+    	checkedMenusminimal : []
+    }
+
+    $scope.save = function(){
+    	 $http.post('/roles/save', $scope.data, config)
+	            .success(function (data, status, headers, config) {
+                  if(!data.user){
+                    toastr.error(data.message, 'Error');
+                  }
+                  else{
+                    toastr.success('',data.message);
+                    window.location.href = data.redirect;
+                  }
+	            })
+	            .error(function (data, status, header, config) {
+	                $scope.ResponseDetails = "Data: " + data +
+	                    "<hr />status: " + status +
+	                    "<hr />headers: " + header +
+	                    "<hr />config: " + config;
+	            });
+    }
 
 });
 
