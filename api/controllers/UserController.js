@@ -92,6 +92,9 @@ module.exports = {
 
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
+	    params.age = parseInt(params.age);
+
+	    delete params.id;
 
 	    User.findById(id).populate('roles').exec(function userFound(err, user) {
 

@@ -14,8 +14,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li class="<%= (req.path == '/dashboard') ? 'active' : '' %>"><a href="/dashboard">Dashboard</a></li>
         <% for(var i=0; i<topMenu.length; i++) {%>
-		      <li><a href="<%= topMenu[i].route %>"><%= topMenu[i].name %></a></li>
+		      <li class="<%= (req.path == '/'+topMenu[i].route) ? 'active' : '' %>"><a href="<%= topMenu[i].route %>"><%= topMenu[i].name %></a></li>
 		    <% } %>        
       </ul>
       <ul class="nav navbar-nav navbar-right">

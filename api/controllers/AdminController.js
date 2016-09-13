@@ -7,16 +7,25 @@
 
 
 module.exports = {
+
+	dashboard : function(req, res, next) {
+
+		MenuService.all(req, function(topMenu){
+			return res.view('dashboard', {
+				user : req.user,
+				topMenu : topMenu
+			});
+		});
+	},
+
 	administrators : function(req, res, next) {
 
-		var loggedInUser = req.user;
+		User.find().sort('createdAt ASC').exec(function(err, administrators){
 
-		User.find().exec(function(err, administrators){
-
-			Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
+			MenuService.all(req, function(topMenu){
 				
 				return res.view('administrators', {
-					user : loggedInUser,
+					user : req.user,
 					topMenu : topMenu,
 					administrators : administrators
 				});
@@ -27,12 +36,10 @@ module.exports = {
 
 	participants : function(req, res, next) {
 
-		var loggedInUser = req.user;
-
-		Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
+		MenuService.all(req, function(topMenu){
 			
 			return res.view('participants', {
-				user : loggedInUser,
+				user : req.user,
 				topMenu : topMenu
 			});
 

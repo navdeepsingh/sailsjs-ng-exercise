@@ -81,11 +81,14 @@ module.exports = {
 	});
   },
   beforeUpdate: function(values) {
-    if(values.password != undefined) {
+    if(values.password) {
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(values.password, salt);
         return values.password = hash;
-    } 
+    } else {
+        delete values.password;
+        //console.log('Error bcrypting');
+    }
   },
   //model validation messages definitions
     validationMessages: { //hand for i18n & l10n
