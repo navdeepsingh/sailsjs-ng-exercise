@@ -175,32 +175,47 @@ app.controller('ctrlRoles',function($scope, $http, toastr){
 
 	var config = {
         headers : {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            'Content-Type': 'application/json;'
         }
     }
-
     $scope.data = {
-    	checkedMenussuper : [],
-    	checkedMenusminimal : []
+    	super : [],
+    	minimal : []
+    }
+
+    $scope.init = function(){
+    	$http.get('/api/roles/menus').success(function(response){
+    		$scope.data.super = response.super;
+    		$scope.data.minimal = response.minimal;
+    	});
+    }
+
+    $scope.toggleSelection = function toggleSelection(roleName, menuName) {
+    	//console.log(roleName);
+    	var model;
+    	if (roleName == 'super')
+    		model = $scope.data.super;
+    	else
+    		model = $scope.data.minimal;    	
+
+    	var	idx = model.indexOf(menuName);
+
+    	// is currently selected
+    	if(idx > -1) {
+    		model.splice(idx,1);
+    	}
+
+    	// is new selected
+    	else {
+    		model.push(menuName);	
+    	}
     }
 
     $scope.save = function(){
-    	 $http.post('/roles/save', $scope.data, config)
-	            .success(function (data, status, headers, config) {
-                  if(!data.user){
-                    toastr.error(data.message, 'Error');
-                  }
-                  else{
-                    toastr.success('',data.message);
-                    window.location.href = data.redirect;
-                  }
-	            })
-	            .error(function (data, status, header, config) {
-	                $scope.ResponseDetails = "Data: " + data +
-	                    "<hr />status: " + status +
-	                    "<hr />headers: " + header +
-	                    "<hr />config: " + config;
-	            });
+    	$http.post('/roles/save', $scope.data, config)
+	            .success(function (data, status, headers, config) {				
+            		toastr.success('',data.message);
+                });
     }
 
 });
@@ -218,10 +233,10 @@ app.config(function(toastrConfig) {
   });
 });
 
-$('input:checkbox').change(function(){
+/*$('input:checkbox').change(function(){
   if($(this).is(":checked")) {
     $('.login-sub span').addClass("active");
   } else {
     $('.login-sub span').removeClass("active");
   }
-});
+});*/

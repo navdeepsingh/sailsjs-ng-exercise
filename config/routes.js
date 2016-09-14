@@ -49,6 +49,7 @@ module.exports.routes = {
 
   'get /roles': 'RoleController.index',
   'get /api/roles': 'RoleController.roles',
+  'get /api/roles/menus': 'RoleController.rolesMenus',
   'post /roles/save': 'RoleController.save',
 
   // Standard RESTful routing
