@@ -12,7 +12,17 @@ module.exports = {
 
 		MenuService.all(req, function(topMenu){
 
+
+			// For Aggregate Operation
 			User.native(function(err,collection) {
+
+				collection.mapReduce(
+					function() { emit( this.gender, 1); },
+					function(gender, count) { return Array.sum( count )},
+					{
+						out: "map_reduce_results"
+					}
+				);
 
 			    collection.aggregate(
 			        [
@@ -22,13 +32,21 @@ module.exports = {
 			        ],
 			        function(err,aggregateResult) {
 			        	if (err) return res.serverError(err);
-			        	console.log(aggregateResult);
+			        	//console.log(aggregateResult);
 
-			        	return res.view('dashboard', {
-							user : req.user,
-							topMenu : topMenu,
-							aggregateResult : aggregateResult
-						});
+			        	MapReduce.find().exec(function afterwards(err, mapReduceResult) {
+			        		if (err) return res.serverError(err);
+							console.log(mapReduceResult);
+			        		return res.view('dashboard', {
+								user : req.user,
+								topMenu : topMenu,
+								aggregateResult : aggregateResult,
+								mapReduceResult : mapReduceResult
+							});
+			        		
+			        	});
+
+			        	
 			        });
 			});
 			
