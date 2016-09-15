@@ -4,7 +4,7 @@ var app = angular.module('app', ['toastr']);
 
 app.controller('ctrlLogin',function($scope, $http, toastr){
 
-  $scope.date = new Date();
+  	$scope.date = new Date();
 
 	$scope.user = { email: '', password: '' };
 
@@ -171,6 +171,55 @@ app.controller('userController',function($scope, $http, toastr){
 
 });
 
+app.controller('ctrlRoles',function($scope, $http, toastr){
+
+	var config = {
+        headers : {
+            'Content-Type': 'application/json;'
+        }
+    }
+    $scope.data = {
+    	super : [],
+    	minimal : []
+    }
+
+    $scope.init = function(){
+    	$http.get('/api/roles/menus').success(function(response){
+    		$scope.data.super = response.super;
+    		$scope.data.minimal = response.minimal;
+    	});
+    }
+
+    $scope.toggleSelection = function toggleSelection(roleName, menuName) {
+    	//console.log(roleName);
+    	var model;
+    	if (roleName == 'super')
+    		model = $scope.data.super;
+    	else
+    		model = $scope.data.minimal;    	
+
+    	var	idx = model.indexOf(menuName);
+
+    	// is currently selected
+    	if(idx > -1) {
+    		model.splice(idx,1);
+    	}
+
+    	// is new selected
+    	else {
+    		model.push(menuName);	
+    	}
+    }
+
+    $scope.save = function(){
+    	$http.post('/roles/save', $scope.data, config)
+	            .success(function (data, status, headers, config) {				
+            		toastr.success('',data.message);
+                });
+    }
+
+});
+
 app.filter('startFrom', function() {
   return function(input, start) {
     start = +start; //parse to int
@@ -184,10 +233,10 @@ app.config(function(toastrConfig) {
   });
 });
 
-$('input:checkbox').change(function(){
+/*$('input:checkbox').change(function(){
   if($(this).is(":checked")) {
     $('.login-sub span').addClass("active");
   } else {
     $('.login-sub span').removeClass("active");
   }
-});
+});*/

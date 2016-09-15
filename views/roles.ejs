@@ -17,18 +17,19 @@
 
               <% } %>
             </ul>
-            <form ng-controller="ctrlRoles" id="rolesForm" ng-submit="save()">
+            <form ng-controller="ctrlRoles" id="rolesForm" ng-submit="save()" ng-init="init()">
               <!-- Tab panes -->
               <div class="tab-content">
 
                   <% for(var i=0; i<allRoles.length; i++) {%>
 
                     <div role="tabpanel" class="tab-pane <% if (i==0) { %> active <% } %>" id="<%= allRoles[i].name %>" >
+                    
                       <ul>
                         <% for(var j=0; j<allMenus.length; j++) {%>
                           <li>
-                            <input type="checkbox" name="<%= allRoles[i].name %>" id="<%= allRoles[i].name +'-'+ allMenus[j].name %>" <% if (_.contains(allMenus[j].roles, allRoles[i].name)) { %> checked <% } %>>
-                            <label for="<%= allRoles[i].name +'-'+ allMenus[j].name %>"> <%= allMenus[j].name %> </label>
+                            <input type="checkbox" value="<%= allRoles[i].name %>" ng-checked="data.<%= allRoles[i].name %>.indexOf('<%= allMenus[j].name %>') > -1" ng-click="toggleSelection('<%= allRoles[i].name %>', '<%= allMenus[j].name %>')">
+                            <label> <%= allMenus[j].name %> </label>
                           </li>
                         <% } %>
                       </ul>
@@ -41,6 +42,8 @@
               <div class="btn-row">
                 <button class="btn btn-primary pull-right" type="submit">Submit</button>
               </div>
+
+              
           </form>
           </div>
     	</div>
