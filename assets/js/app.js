@@ -44,6 +44,8 @@ app.controller('ctrlLogin',function($scope, $http, toastr){
 
 app.controller('userController',function($scope, $http, toastr){
 
+  $scope.sortType     = 'firstName'; // set the default sort type
+
 	var config = {
         headers : {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
@@ -196,7 +198,7 @@ app.controller('ctrlRoles',function($scope, $http, toastr){
     	if (roleName == 'super')
     		model = $scope.data.super;
     	else
-    		model = $scope.data.minimal;    	
+    		model = $scope.data.minimal;
 
     	var	idx = model.indexOf(menuName);
 
@@ -207,13 +209,13 @@ app.controller('ctrlRoles',function($scope, $http, toastr){
 
     	// is new selected
     	else {
-    		model.push(menuName);	
+    		model.push(menuName);
     	}
     }
 
     $scope.save = function(){
     	$http.post('/roles/save', $scope.data, config)
-	            .success(function (data, status, headers, config) {				
+	            .success(function (data, status, headers, config) {
             		toastr.success('',data.message);
                 });
     }
