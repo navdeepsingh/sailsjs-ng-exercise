@@ -11,10 +11,27 @@ module.exports = {
 	dashboard : function(req, res, next) {
 
 		MenuService.all(req, function(topMenu){
-			return res.view('dashboard', {
-				user : req.user,
-				topMenu : topMenu
+
+			User.native(function(err,collection) {
+
+			    collection.aggregate(
+			        [
+			            {$match : {"age" : { $gte : 40 }}},
+						{$group : {_id : "$roles", count : {$sum : 1}}},
+						{$sort : {count : 1}}
+			        ],
+			        function(err,aggregateResult) {
+			        	if (err) return res.serverError(err);
+			        	console.log(aggregateResult);
+
+			        	return res.view('dashboard', {
+							user : req.user,
+							topMenu : topMenu,
+							aggregateResult : aggregateResult
+						});
+			        });
 			});
+			
 		});
 	},
 
