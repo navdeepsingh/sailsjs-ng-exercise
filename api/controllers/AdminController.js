@@ -13,9 +13,10 @@ module.exports = {
 		MenuService.all(req, function(topMenu){
 
 
-			// For Aggregate Operation
+			
 			User.native(function(err,collection) {
 
+				// For Map/Reduce Operation
 				collection.mapReduce(
 					function() { emit( this.gender, 1); },
 					function(gender, count) { return Array.sum( count )},
@@ -24,6 +25,7 @@ module.exports = {
 					}
 				);
 
+				// For Aggregate Operation
 			    collection.aggregate(
 			        [
 			            {$match : {"age" : { $gte : 40 }}},
@@ -32,11 +34,9 @@ module.exports = {
 			        ],
 			        function(err,aggregateResult) {
 			        	if (err) return res.serverError(err);
-			        	//console.log(aggregateResult);
 
 			        	MapReduce.find().exec(function afterwards(err, mapReduceResult) {
 			        		if (err) return res.serverError(err);
-							console.log(mapReduceResult);
 			        		return res.view('dashboard', {
 								user : req.user,
 								topMenu : topMenu,

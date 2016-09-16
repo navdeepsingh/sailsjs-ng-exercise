@@ -42,7 +42,7 @@ angular.module('sailsjsApp')
 angular.module('sailsjsApp')
 	.controller('userController',function($scope, $http, toastr){
 
-	  $scope.sortType     = 'firstName'; // set the default sort type
+	  $scope.sortType = 'firstName'; // set the default sort type
 
 		var config = {
 	        headers : {

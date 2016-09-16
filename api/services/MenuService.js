@@ -4,7 +4,7 @@ module.exports = {
 
   	loggedInUser = req.user;
 
-	Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {
+	Menu.find({ roles : loggedInUser[0].roles }).sort('position ASC').then(function(topMenu) {
 			
 		return cb(topMenu);
 

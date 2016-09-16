@@ -16,10 +16,25 @@
                   <span ng-show="sortType == 'firstName' && !sortReverse" class="fa fa-caret-down"></span>
                   <span ng-show="sortType == 'firstName' && sortReverse" class="fa fa-caret-up"></span></a>
                 </th>
-                <th>Email</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Logins</th>
+                <th>
+                  <a href="" ng-click="sortType = 'email'; sortReverse = !sortReverse">Email
+                  <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+                <th>
+                  <a href="" ng-click="sortType = 'age'; sortReverse = !sortReverse">Age
+                  <span ng-show="sortType == 'age' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'age' && sortReverse" class="fa fa-caret-up"></span></a>
+                </th>
+                <th>
+                <a href="" ng-click="sortType = 'gender'; sortReverse = !sortReverse">Gender
+                  <span ng-show="sortType == 'gender' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'gender' && sortReverse" class="fa fa-caret-up"></span></a></th>
+                <th>
+                <a href="" ng-click="sortType = 'logins'; sortReverse = !sortReverse">Logins
+                  <span ng-show="sortType == 'logins' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'logins' && sortReverse" class="fa fa-caret-up"></span></a></th>
                 <th>Roles</th>
                 <th>
                   <a href="" ng-click="sortType = 'createdAt'; sortReverse = !sortReverse">Created At
