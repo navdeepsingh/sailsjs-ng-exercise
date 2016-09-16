@@ -1,6 +1,6 @@
 <%- partial ('partials/navbar.ejs') %>
 
-<div class="container" ng-controller="userController" ng-init="init()">
+<div class="container" ng-controller="userController">
   <div class="row">
     	<div class="col-lg-12">
     		<h2>Administrators CRUD Operations</h2>
@@ -12,9 +12,9 @@
               <tr>
                 <th>Id</th>
                 <th>
-                  <a href="#" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">Name</a>
+                  <a href="" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">Name
                   <span ng-show="sortType == 'firstName' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'firstName' && sortReverse" class="fa fa-caret-up"></span>
+                  <span ng-show="sortType == 'firstName' && sortReverse" class="fa fa-caret-up"></span></a>
                 </th>
                 <th>Email</th>
                 <th>Age</th>
@@ -22,24 +22,24 @@
                 <th>Logins</th>
                 <th>Roles</th>
                 <th>
-                  <a href="#" ng-click="sortType = 'createdAt'; sortReverse = !sortReverse">Created At</a>
+                  <a href="" ng-click="sortType = 'createdAt'; sortReverse = !sortReverse">Created At
                   <span ng-show="sortType == 'createdAt' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'createdAt' && sortReverse" class="fa fa-caret-up"></span>
+                  <span ng-show="sortType == 'createdAt' && sortReverse" class="fa fa-caret-up"></span></a>
                 </th>
                 <th>Action</th>
               </tr>
               <tr ng-repeat="(key, user) in data.users | orderBy:sortType:sortReverse | startFrom:currentPage*pageSize | limitTo:pageSize">
-                <td>{{ user._id }}</td>
+                <td>{{ key+1 }}</td>
                 <td>{{ user.firstName }} {{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.age }}</td>
                 <td>{{ user.gender }}</td>
                 <td>{{ user.logins }}</td>
                 <td>{{ user.roles }}</td>
-                <td>{{ user.createdAt }}</td>
+                <td>{{ user.createdAt | date:'d MMM, y h:m:s'}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" ng-click="editAdminForm(user._id, user.roles)">Edit</button>
-                    <button type="button" class="btn btn-danger" ng-click="deleteUser(user._id)" ng-hide="data.loggedInUser.id == user._id">Delete</button>
+                    <button type="button" class="btn btn-primary" ng-click="editAdminForm(user._id, user.roles)">✔ EDIT</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteUser(user._id)" ng-hide="data.loggedInUser.id == user._id">✖ Delete</button>
                 </td>
               </tr>
         </table>

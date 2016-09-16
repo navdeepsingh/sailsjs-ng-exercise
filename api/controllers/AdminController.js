@@ -55,7 +55,7 @@ module.exports = {
 
 	administrators : function(req, res, next) {
 
-		User.find().sort('createdAt ASC').exec(function(err, administrators){
+		User.find().exec(function(err, administrators){
 
 			MenuService.all(req, function(topMenu){
 				
