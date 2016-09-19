@@ -139,7 +139,7 @@ ul,li {
   border-top: 0px solid #e7e7e7;
 }
 .nav-tabs>li>a {
-  background: #ecf7fd;
+  background: #5dc4fd;
 }
 .btn-row{
   padding: 20px 0;
@@ -149,7 +149,8 @@ ul,li {
   text-align: center;
 }
 .has-error p.help-block{
-  color: #00ffff;
+  color: #f00;
+  text-shadow: 1px 1px 1px #000;
 }
 .spinner {
   margin: 100px auto;
@@ -164,7 +165,7 @@ ul,li {
   height: 100%;
   width: 6px;
   display: inline-block;
-  
+
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
@@ -190,15 +191,15 @@ ul,li {
 }
 
 @-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
   20% { -webkit-transform: scaleY(1.0) }
 }
 
 @keyframes sk-stretchdelay {
-  0%, 40%, 100% { 
+  0%, 40%, 100% {
     transform: scaleY(0.4);
     -webkit-transform: scaleY(0.4);
-  }  20% { 
+  }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
   }
