@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('sailsjsApp')
-	.controller('ctrlLogin',function($scope, $http, toastr){
+	.controller('ctrlLogin',function($scope, $http, toastr, common){
 
-	  	$scope.date = new Date();
+		$scope.loading = common.loading;
+		$scope.date = new Date();
 		$scope.user = { email: '', password: '' };
 		var config = {
 		                headers : {
@@ -14,6 +15,7 @@ angular.module('sailsjsApp')
 		$scope.login = function(){
 
 		    if($scope.loginForm.$valid){
+		    	$scope.loading = true;
 		      $http.post('/login', $scope.user, config)
 		            .success(function (data, status, headers, config) {
 	                  if(!data.user){
@@ -23,6 +25,7 @@ angular.module('sailsjsApp')
 	                    toastr.success('',data.message);
 	                    window.location.href = data.redirect;
 	                  }
+	                  		            $scope.loading = false;
 		            })
 		            .error(function (data, status, header, config) {
 		                $scope.ResponseDetails = "Data: " + data +
@@ -40,9 +43,11 @@ angular.module('sailsjsApp')
 });
 
 angular.module('sailsjsApp')
-	.controller('userController',function($scope, $http, toastr){
+	.controller('userController',function($scope, $http, toastr, common){
 
-	  $scope.sortType = 'firstName'; // set the default sort type
+		$scope.loading = true;
+
+		$scope.sortType = 'firstName'; // set the default sort type
 
 		var config = {
 	        headers : {
@@ -142,21 +147,22 @@ angular.module('sailsjsApp')
 		};
 
 		$scope.deleteUser = function(id){
-			if (confirm('Are you Sure?')){
-				$http.delete('/api/user/'+id).success(function(responseDelete){
-					$scope.getUsers();
-					toastr.success('',responseDelete.message);
-				});
-			}
-
+			 $('#confirmModal').modal({ backdrop: 'static', keyboard: false })
+		        .one('click', '#delete', function() {
+		            $http.delete('/api/user/'+id).success(function(responseDelete){
+						$scope.getUsers();
+						toastr.success('',responseDelete.message);
+					});
+		        });
 		},
 
 		$scope.getUsers = function () {
 			$http.get('/api/user').success(function(data){
 				$scope.currentPage = 0;
-	  			$scope.pageSize = 20;
+	  			$scope.pageSize = 10;
 			  	$scope.data.users = data.results;
 			  	$scope.data.loggedInUser = data.loggedInUser;
+			  	$scope.loading = false;
 			});
 		}
 
@@ -170,7 +176,7 @@ angular.module('sailsjsApp')
 		   return Math.ceil($scope.data.users.length/$scope.pageSize);
 		}
 
-		 $scope.init();
+		$scope.init();
 });
 
 angular.module('sailsjsApp')
