@@ -32,7 +32,14 @@ passport.use(new LocalStrategy({
               message: "Incorrect Password"
             });
 
-          //User.update(user.id, { logins: '1' }).then(console.log);
+          User.native(function(err, userNative){
+            userNative.update({ email: user.email }, {$set : {logins : eval(user.logins+1) }}, function userUpdated(err, updatedUser) {
+              if(err) return res.sender(err,500);
+              if(!updatedUser) {
+                return res.send("User "+id+" not updated", 400);
+              }
+            });
+          });   
 
           // Find default menu of user assigned
           Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {   

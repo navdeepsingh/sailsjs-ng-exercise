@@ -12,8 +12,20 @@ module.exports = {
 
 		MenuService.all(req, function(topMenu){
 
+
+			
 			User.native(function(err,collection) {
 
+				// For Map/Reduce Operation
+				collection.mapReduce(
+					function() { emit( this.gender, 1); },
+					function(gender, count) { return Array.sum( count )},
+					{
+						out: "map_reduce_results"
+					}
+				);
+
+				// For Aggregate Operation
 			    collection.aggregate(
 			        [
 			            {$match : {"age" : { $gte : 40 }}},
@@ -22,13 +34,19 @@ module.exports = {
 			        ],
 			        function(err,aggregateResult) {
 			        	if (err) return res.serverError(err);
-			        	console.log(aggregateResult);
 
-			        	return res.view('dashboard', {
-							user : req.user,
-							topMenu : topMenu,
-							aggregateResult : aggregateResult
-						});
+			        	MapReduce.find().exec(function afterwards(err, mapReduceResult) {
+			        		if (err) return res.serverError(err);
+			        		return res.view('dashboard', {
+								user : req.user,
+								topMenu : topMenu,
+								aggregateResult : aggregateResult,
+								mapReduceResult : mapReduceResult
+							});
+			        		
+			        	});
+
+			        	
 			        });
 			});
 			
@@ -37,7 +55,7 @@ module.exports = {
 
 	administrators : function(req, res, next) {
 
-		User.find().sort('createdAt ASC').exec(function(err, administrators){
+		User.find().exec(function(err, administrators){
 
 			MenuService.all(req, function(topMenu){
 				

@@ -24,10 +24,14 @@ module.exports = {
                     user: user
                 });
             }
+            if ( user.logins > 0 ) 
+                message = 'Welcome back, '+ user.getFullName()
+            else
+                message = 'Login Successful';
             req.logIn(user, function(err) {
                 if (err) res.send(err);
                 return res.send({
-                  message: 'login successful',
+                  message: message,
                   user: user,
                   redirect : info.redirect
                 });
