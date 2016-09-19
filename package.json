@@ -36,9 +36,9 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/sailsjs.git"
+    "url": "git@bitbucket.org:publicissg/sailsjs-angular-exercise.git"
   },
-  "author": "anonymous node/sails user",
+  "author": "Navdeep Singh / Saravanan Selvaraj",
   "license": "",
   "devDependencies": {
     "nodemon": "^1.10.2"
