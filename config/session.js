@@ -44,7 +44,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-   adapter: 'redis',
+  // adapter: 'redis',
 
   /***************************************************************************
   *                                                                          *
@@ -55,11 +55,11 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  host: 'sculpin.redistogo.com',
+  /*host: 'sculpin.redistogo.com',
   port: 9700,
   //ttl: <redis session TTL in seconds>,
-  db: redistogo,
-  pass: 9cccb7863ec6157e7a4f7978cb6c0087,
+  db: 'redistogo',
+  pass: '9cccb7863ec6157e7a4f7978cb6c0087',*/
   //prefix: 'sess:',
 
 
@@ -73,9 +73,9 @@ module.exports.session = {
   * Use the latest version with Node >= 4.0                                  *
   *                                                                          *
   ***************************************************************************/
-
-  // adapter: 'mongo',
-  // url: 'mongodb://user:password@localhost:27017/dbname', // user, password and port optional
+/*
+  adapter: 'sails-mongo',
+  url: 'mongodb://@localhost:27017/sailjs', // user, password and port optional*/
 
   /***************************************************************************
   *                                                                          *
@@ -88,13 +88,13 @@ module.exports.session = {
   * available in `mongoOptions`                                              *
   *                                                                          *
   ***************************************************************************/
-
-  // collection: 'sessions',
-  // stringify: true,
-  // mongoOptions: {
-  //   server: {
-  //     ssl: true
-  //   }
-  // }
+/*
+  collection: 'sessions',
+  stringify: true,
+  mongoOptions: {
+    server: {
+      ssl: true
+    }
+  }*/
 
 };
