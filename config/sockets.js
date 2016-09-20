@@ -44,11 +44,11 @@ module.exports.sockets = {
   // -OR-
   //
 
-   adapter: 'socket.io-redis',
+/*   adapter: 'socket.io-redis',
    host: 'sculpin.redistogo.com',
    port: 9700,
    db: 0,
-   pass: '9cccb7863ec6157e7a4f7978cb6c0087',
+   pass: '9cccb7863ec6157e7a4f7978cb6c0087',*/
 
 
 

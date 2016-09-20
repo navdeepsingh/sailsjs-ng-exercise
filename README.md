@@ -19,11 +19,11 @@ mongoimport --db sailjs --collection user --file user.json
 mongoimport --db sailjs --collection role --file role.json
 mongoimport --db sailjs --collection role --file menu.json
 
-3. http://localhost:1337/login Here u GO
+3. http://localhost:1337/ Here u GO
 ```
 
 ### Status
-CRUD Operations with Sorting and Pagination Implemented
+Admin Panel in testing phase
 
 ###### Thanks, ######
 __*Navdeep & Saravanan*__
