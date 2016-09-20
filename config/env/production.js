@@ -18,7 +18,8 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'prodMongoDBServer'
+    connection: 'prodMongoDBServer',
+    migrate: 'safe',
   },
 
   /***************************************************************************
@@ -32,7 +33,7 @@ module.exports = {
    ***************************************************************************/
 
   log: {
-    level: "silent"
+    level: "info"
   },
 
   blueprints : {
