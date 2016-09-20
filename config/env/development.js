@@ -22,7 +22,8 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-    connection: 'localMongoDBServer'
+    connection: 'localMongoDBServer',
+    migrate: 'safe',
   }
 
 };
