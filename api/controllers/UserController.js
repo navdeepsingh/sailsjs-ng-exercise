@@ -54,11 +54,9 @@ module.exports = {
 		}
 
 		User.create(params).populate('roles').exec(function createUser(err, user){
-			if(err) { //return res.send(err,500);
+			if(err) { 
 				return res.json(err);
 			}
-
-			
 
 			User.native(function(err, userNative){
 				userNative.update({ email : user.email }, {$set : {roles : values.roles }}, function userUpdated(err, updatedUser) {
@@ -92,6 +90,9 @@ module.exports = {
 
 	    var params = _.extend(req.query || {}, req.params || {}, req.body || {});
 	    var id = params.id;
+	    params.age = parseInt(params.age);
+
+	    delete params.id;
 
 	    User.findById(id).populate('roles').exec(function userFound(err, user) {
 

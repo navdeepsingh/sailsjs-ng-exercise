@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "bcryptjs": "^2.3.0",
+    "connect-redis": "^3.1.0",
     "ejs": "2.3.4",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
@@ -27,7 +28,8 @@
     "sails": "~0.12.4",
     "sails-disk": "~0.10.9",
     "sails-hook-validation": "^0.4.6",
-    "sails-mongo": "^0.12.1"
+    "sails-mongo": "^0.12.1",
+    "socket.io-redis": "^1.0.0"
   },
   "scripts": {
     "debug": "node debug app.js",
@@ -36,9 +38,9 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/sailsjs.git"
+    "url": "git@bitbucket.org:publicissg/sailsjs-angular-exercise.git"
   },
-  "author": "anonymous node/sails user",
+  "author": "Navdeep Singh / Saravanan Selvaraj",
   "license": "",
   "devDependencies": {
     "nodemon": "^1.10.2"

@@ -1,0 +1,76 @@
+<%- partial ('partials/navbar.ejs') %>
+
+<div class="container">
+  <div class="row">
+    	<div class="col-lg-12">
+    		<h2>Dashboard</h2>
+    		<hr>
+    		<div class="row">
+    			<div class="col-lg-6"><div id="chart1"></div></div>
+    			<div class="col-lg-6"><div id="chart2"></div></div>
+    		</div>
+        </div>
+        
+  </div>
+</div>
+
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart1() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Roles');
+        data.addColumn('number', 'count');
+        data.addRows([
+        	<% for(var i=0; i<aggregateResult.length; i++) {%>
+        	['<%= aggregateResult[i]._id %>', <%= aggregateResult[i].count %>],	
+        	<% } %>
+        ]);       
+        
+
+        // Set chart options
+        var options = {'title':'How many admins greater than age 40 group by their roles',
+                       'width':550,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Count'],
+          <% for(var i=0; i<mapReduceResult.length; i++) {%>
+        	['<%= mapReduceResult[i].id %>', <%= mapReduceResult[i].value %>],	
+          <% } %>
+        ]);
+
+
+         var options = {
+          title: 'Stats of Admins Gender',
+          pieHole: 0.4,
+          'width':550,
+          'height':300
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart2'));
+        chart.draw(data, options);
+
+        }
+    </script>

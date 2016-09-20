@@ -86,7 +86,8 @@ module.exports = {
         var hash = bcrypt.hashSync(values.password, salt);
         return values.password = hash;
     } else {
-        console.log('Error bcrypting');
+        delete values.password;
+        //console.log('Error bcrypting');
     }
   },
   //model validation messages definitions

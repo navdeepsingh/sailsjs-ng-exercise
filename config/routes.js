@@ -33,7 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    view: 'login'
   },
 
   'get /login': {
@@ -41,20 +41,16 @@ module.exports.routes = {
   },
 
   'post /login': 'AuthController.login',
-
   '/logout': 'AuthController.logout',
 
+  'get /dashboard' : 'AdminController.dashboard',
   'get /administrators': 'AdminController.administrators',
-
-  'get /roles': 'RoleController.index',
-
-  'get /api/roles': 'RoleController.roles',
-
-  'post /roles/save': 'RoleController.save',
-
   'get /participants' : 'AdminController.participants',
 
-
+  'get /roles': 'RoleController.index',
+  'get /api/roles': 'RoleController.roles',
+  'get /api/roles/menus': 'RoleController.rolesMenus',
+  'post /roles/save': 'RoleController.save',
 
   // Standard RESTful routing
   // (if index is not defined, findAll will be used)

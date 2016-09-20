@@ -64,11 +64,11 @@ module.exports.connections = {
     password: '', //optional
     database: 'sailjs' //optional
   },
-/*
+
   prodMongoDBServer: {
     adapter: 'sails-mongo',
-    url : 'mongodb://heroku_bpg39c65:heroku123@ds017886.mlab.com:17886/heroku_bpg39c65'
-  },*/
+    url : 'mongodb://heroku_m5wd9xtt:tiefr0i4619tkmtbc96mful5os@ds035836.mlab.com:35836/heroku_m5wd9xtt'
+  },
 
   /***************************************************************************
   *                                                                          *
