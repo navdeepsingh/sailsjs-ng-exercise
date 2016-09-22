@@ -50,7 +50,17 @@
                 <td>{{ user.age }}</td>
                 <td>{{ user.gender }}</td>
                 <td>{{ user.logins }}</td>
-                <td>{{ user.roles }}</td>
+                <td>
+                  <div ng-show="user.roles == 'minimal'">
+                    <img src="images/pawn.png">
+                  </div>
+                  <div ng-show="user.roles == 'super'">
+                    <img src="images/king.png">
+                  </div>
+                  <div ng-show="user.roles.length == 2">
+                    <img src="images/king.png"> <img src="images/pawn.png">
+                  </div>
+                </td>
                 <td>{{ user.createdAt | date:'d MMM, y h:m:s'}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" ng-click="editAdminForm(user._id, user.roles)">✔ EDIT</button>
