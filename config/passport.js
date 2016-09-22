@@ -24,7 +24,7 @@ passport.use(new LocalStrategy({
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect email.' });
-      } 
+      }
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res)
@@ -39,13 +39,13 @@ passport.use(new LocalStrategy({
                 return res.send("User "+id+" not updated", 400);
               }
             });
-          });   
+          });
 
           // Find default menu of user assigned
-          Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {   
+          Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {
             return done(null, user, {
               message: 'Logged In Successfully',
-              redirect : '/'+ defaultMenu.route
+              redirect : defaultMenu.route
             });
           });
         });
