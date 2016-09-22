@@ -36,15 +36,21 @@ module.exports.policies = {
   ***************************************************************************/
 
   'UserController': {
-  //  '*': 'isAuthenticated'
+    '*': 'isAuthenticated'
   },
 
   'AdminController': {
-    '*': 'isAuthenticated'
+    'dashboard': 'isAuthenticated',
+    'administrators': ['isAuthenticated', 'isRouteValid'],
+    'participants': ['isAuthenticated', 'isRouteValid'],
   },
 
   'RoleController': {
-    '*': 'isAuthenticated'
+    '*': false,
+    'index' : ['isAuthenticated', 'isRouteValid'],
+    'rolesMenus' : ['isAuthenticated'],
+    'roles' : ['isAuthenticated'],
+    'save' : ['isAuthenticated']
   }
 
 	// RabbitController: {

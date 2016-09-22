@@ -12,7 +12,7 @@ module.exports = {
 
 		Role.find().exec(function(err, allRoles){
 			Menu.find().exec(function(err, allMenus){
-				Menu.find({ roles : loggedInUser[0].roles }).then(function(topMenu) {				
+				MenuService.all(req, function(topMenu){				
 
 						return res.view('roles', {
 							user : loggedInUser,

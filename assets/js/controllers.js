@@ -88,7 +88,7 @@ angular.module('sailsjsApp')
 	    };
 
 	    $scope.init = function() {
-			$scope.getUsers();	
+			$scope.getUsers();
 		 };
 
 		$scope.createAdminForm = function(){
@@ -170,14 +170,14 @@ angular.module('sailsjsApp')
 			$http.get('/api/roles').success(function(allRoles){
 		    	$scope.data.allRoles = allRoles;
 			});
-		}	
+		}
 
 		$scope.numberOfPages=function(){
 		   return Math.ceil($scope.data.users.length/$scope.pageSize);
 		}
 
 		$scope.init();
-});
+	});
 
 angular.module('sailsjsApp')
 	.controller('ctrlRoles',function($scope, $http, toastr){
@@ -226,4 +226,4 @@ angular.module('sailsjsApp')
 	            		toastr.success('',data.message);
 	                });
 	    }
-});
+	});
