@@ -11,8 +11,6 @@ module.exports = {
 	dashboard : function(req, res, next) {
 
 		MenuService.all(req, function(topMenu){
-
-
 			
 			User.native(function(err,collection) {
 

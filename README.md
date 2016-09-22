@@ -19,7 +19,9 @@ mongoimport --db sailjs --collection user --file user.json
 mongoimport --db sailjs --collection role --file role.json
 mongoimport --db sailjs --collection role --file menu.json
 
-3. http://localhost:1337/ Here u GO
+3. Run nodemon
+
+4. http://localhost:1337/ Here u GO
 ```
 
 ### Status
