@@ -12,7 +12,11 @@
               <% for(var i=0; i<allRoles.length; i++) {%>
 
                 <li role="presentation" <% if (i==0) { %> class="active" <% } %>>
-                  <a href="#<%= allRoles[i].name %>" aria-controls="home" role="tab" data-toggle="tab"><strong><%= allRoles[i].fullName %></strong> <br><small><%= allRoles[i].description %></small></a>
+                  <a href="#<%= allRoles[i].name %>" aria-controls="home" role="tab" data-toggle="tab">
+                    <img src="images/<%= allRoles[i].name == 'minimal' ? 'pawn.png' : 'king.png' %>">
+                    <strong><%= allRoles[i].fullName %></strong>
+                    <br><small><%= allRoles[i].description %></small>
+                  </a>
                 </li>
 
               <% } %>
@@ -24,7 +28,7 @@
                   <% for(var i=0; i<allRoles.length; i++) {%>
 
                     <div role="tabpanel" class="tab-pane <% if (i==0) { %> active <% } %>" id="<%= allRoles[i].name %>" >
-                    
+
                       <ul>
                         <% for(var j=0; j<allMenus.length; j++) {%>
                           <li>
@@ -43,7 +47,7 @@
                 <button class="btn btn-primary pull-right" type="submit">Submit</button>
               </div>
 
-              
+
           </form>
           </div>
     	</div>
