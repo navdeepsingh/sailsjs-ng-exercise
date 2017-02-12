@@ -1,0 +1,2 @@
+{"_id":{"$oid":"57c68b8a6142b501a65b0df8"},"name":"super","fullName":"Super Administrator","description":"Administrative user, has access to everything","visible":"1","level":"1000"}
+{"_id":{"$oid":"57c68b9b6142b501a65b0df9"},"name":"minimal","fullName":"Normal Administrator","description":"Administrative user, has limited access","visible":"1","level":"900"}
