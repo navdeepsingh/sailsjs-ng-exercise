@@ -45,7 +45,7 @@ passport.use(new LocalStrategy({
           Menu.findOne({ roles : user.roles, 'default' : '1'  }).exec(function(err, defaultMenu) {
             return done(null, user, {
               message: 'Logged In Successfully',
-              redirect : defaultMenu.route
+              redirect : '/participants'
             });
           });
         });
